@@ -1,0 +1,30 @@
+.webtitle{
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    color: #FFFFFF;
+}
+
+a{
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    color: #FFFFFF;
+}
+
+.main{
+    font-family: "Outfit", sans-serif;
+    text-align: left;
+    font-size: 90px;
+    font-weight: 800;
+    font-style: normal;
+    color: #FFFFFF;
+}
+
+header {
+    background-image: url("http://127.0.0.1:5500/images/headerbg.jpg");
+    background-size: cover;
+    background-position: center;
+    height: 700px;
+    width: 1800px;
+}
