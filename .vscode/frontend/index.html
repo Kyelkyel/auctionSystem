@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AuctionVista</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/items.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet"> 
+  
+
+</head>
+ 
+<body>
+    <header> 
+    <nav class="navbar">
+           <ul class="nav-links">
+            <li><a href="home">Home</a></li>
+            <li><a href="#auction">Auctions</a></li>
+            <li><a href="sell">Sell</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+    <div class="logo">KoolBulls</div>
+        <div class="button-container">
+            <a href="Log-in.html"><button class="login-btn">LOG IN</button></a>
+            <a href="Sign-up.html"><button class="sign-up-btn">SIGN UP</button></a>
+        </div>
+
+</header>
+
+
+    <div class="hero">
+        <h1>Secure, Fast, And Transparent <br> Auctions For <br> Everyone</h1>
+    </div>
+
+<!----
+    <main class="container">
+        <div class="image-slider">
+            <div class="slides">
+                <img src="http://127.0.0.1:5500/images/0ab7fc9cc83dd52a288e07e60ec04e23.jpg" alt="Auction Item 1">
+                <img src="http://127.0.0.1:5500/images/1e9d650c08c31aff4a105239e3274bad.jpg" alt="Auction Item 2">
+                <img src="http://127.0.0.1:5500/images/61048ab3ee0c33b80234a7088454f79a.jpg" alt="Auction Item 3">
+            </div>
+        </div>
+      
+        <div class="text-box">
+            <h2>Your Trusted Marketplace for Smart & Secure Bidding</h2>
+            <div class="button-main"> 
+                <button class="bid-btn">BID ITEMS</button>
+                <button class="sell-btn">SELL ITEMS</button>
+            </div>
+        </div>
+    </main>
+-->
+
+<main class="container">
+<section id="auction">
+<div class="dropdown">
+         <button class="dropbtn" onclick="toggleDropdown()">Browse Categories ▼</button>
+    <div id="dropdownContent" class="dropdown-content">
+             <a href="#">New Items</a>
+             <a href="#">Bid Packs</a>
+             <a href="#">Electronics & Computers</a>
+             <a href="#">Fashion, Health & Beauty</a>
+             <a href="#">Gift Cards</a>
+             <a href="#">Hobbies, Toys, Outdoors & Games</a>
+             <a href="#">Home, Garden & Tools</a>
+             <a href="#">Kitchen & Dining</a>
+             <a href="#">Motors (Cars, Boats, etc.)</a>
+     </div>
+</div>
+</section>
+
+   <div class="search-container">
+         <input type="text" id="searchInput" placeholder="Search Auctions....">
+         <button onclick="handleSearch()">🔍</button>
+   </div>
+
+<h2 class="h2">Live Auctions</h2>
+<div class="grid-container">
+  <!-- Card 1 -->
+  <div class="auction-card">
+    <img src="https://via.placeholder.com/150" alt="Product 1">
+    <div class="auction-title">Apple MacBook Air 13"</div>
+    <div class="auction-time">Starts in 2h 20m</div>
+    <div class="auction-price">$6,269</div>
+    <button class="bid-button">BID NOW</button>
+    <div class="buy-now">Buy it now for $6,269</div>
+  </div>
+
+  <!-- Duplicate the card below to simulate many items -->
+  <div class="auction-card">
+    <img src="https://via.placeholder.com/150" alt="Product 2">
+    <div class="auction-title">Canon EOS Camera</div>
+    <div class="auction-time">Ends in 00:01:20</div>
+    <div class="auction-price">$11,519</div>
+    <button class="bid-button">BID NOW</button>
+    <div class="buy-now">Buy it now for $11,519</div>
+  </div>
+
+    </main>
+   
+    <footer>
+    <div class="contact-info">
+        <section id="contact">
+            <h3>Contact Us</h3>
+            <div class="accounts">
+                <a href="https://facebook.com" target="_blank">Facebook</a>  
+                <a href="https://twitter.com" target="_blank">Twitter</a>
+                <a href="https://instagram.com" target="_blank">Instagram</a>
+              </div>
+            <p>Email: auctionVista123@gmail.com</p>
+            <p>Phone: 123-456-789</p>
+            </section>
+    </div>
+            <footer>
+                    
+                <nav class="content">
+                    <a href="about.html">About Us</a> | 
+                    <a href="privacy.html">Privacy Policy</a> | 
+                    <a href="terms.html">Terms of Service</a>
+                  </nav>
+                <p>© 2025 AuctionVista. All rights reserved.</p>
+
+            </div>
+       
+
+    </footer>
+    <script src="browse.js" defer></script>
+    <script src="search.js" defer></script>
+</body>
+</html>
+
+</body>
+
+
+</html>
