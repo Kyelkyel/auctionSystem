@@ -11,3 +11,15 @@ window.onclick = function(event) {
     }
   }
 }
+
+function filterCategory(category) {
+  const cards = document.querySelectorAll('.auction-card');
+  cards.forEach(card => {
+    const cardCategory = card.getAttribute('data-category');
+    if (category === 'all' || cardCategory === category) {
+      card.style.display = 'block';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
