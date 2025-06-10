@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/sell-item.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet"> 
+  
+    <title>Document</title>
+</head>
+<body>
+ <header> 
+    <nav class="navbar">
+     <section id="home">
+           <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="Admin.html">Auctions</a></li>
+            <li><a href="User.html">Contact</a></li>
+        </ul>
+     </section>
+     </nav>
+     
+      <div class="logo">KoolBulls</div>
+
+      
+    <button id="menuBtn">☰</button>
+      
+    <div id="sidebar" class="sidebar">
+    <button id="closeBtn">×</button>
+
+      <div class="profile">
+         <img src="../../images/pfptest.jpg" alt="Profile picture" class="avatar">
+        <div class="userinfo">
+         <strong>USER 01</strong>
+         <span class="handle">@user01</span>
+       </div>
+      </div>
+    
+    <ul>
+      <li><a href="yourProfile.html">Your profile</a></li>
+      <li><a href="sell-item.html">Sell Items</a></li>
+      <li><a href="#">Bidding History</a></li>
+      <li><a href="#">Settings</a></li>
+      <li><a href="#">Sign out</a></li>
+    </ul>
+  </div>
+
+  <div id="overlay" class="overlay"></div>
+
+</header>
+
+ <main>
+  <div class="form-container">
+    <h2>Sell an Item</h2>
+
+    <form id="sellForm">
+      <div class="form-group">
+        <label for="itemImage">Item Image</label>
+        <input type="file" id="itemImage" accept="image/*" required>
+        <img id="previewImage" class="item-preview" src="" alt="" style="display: none;">
+      </div>
+
+      <div class="form-group">
+        <label for="itemTitle">Item Title</label>
+        <input type="text" id="itemTitle" placeholder="e.g., Vintage Watch" required>
+      </div>
+
+      <div class="form-group">
+        <label for="itemDescription">Description</label>
+        <input id="itemDescription" rows="4" placeholder="Describe your item..." required>
+      </div>
+
+      <div class="form-group">
+        <label for="startingBid">Starting Bid ($)</label>
+        <input type="number" id="startingBid" step="0.01" min="0" required>
+      </div>
+
+      <div class="form-group">
+        <label for="sellerInfo">Seller Info</label>
+        <input type="text" id="sellerInfo" placeholder="Name or Username" required>
+        <input type="text" id="sellerInfo" placeholder="Email" required>
+        <input type="number" id="sellerInfo" placeholder="Phone Number" required>
+        <input type="text" id="sellerInfo" placeholder="Location" required>
+      </div>
+
+
+      <button type="submit">Submit Listing</button>
+    </form>
+  </div>
+ </main>
+
+  <script src="Profile.js"></script>
+</body>
+</html>

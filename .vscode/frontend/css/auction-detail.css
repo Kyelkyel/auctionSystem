@@ -12,6 +12,7 @@ body {
 }
 
 header {
+
     top: 0;
     left: 0;
     width: 100%;
@@ -28,21 +29,22 @@ header {
 }
 
 .navbar {
-    display: flex;      
-    width: 100%;    
-    height: 75px;              
+    position: absolute;           
+    top: 25px;                  
+    right: 100px;                  
+    display: flex;
     align-items: center; 
-    justify-content: center;
-    padding: 0px 50px;
-    position: absolute;
-    z-index: 1;    
-    margin-left: 380px;
+    gap: 20px; 
+    background-color: transparent; 
+    z-index: 100;    
 }
 
 .nav-links {
     display: flex;
     flex-direction: row; 
     list-style: none;
+    padding: 0;
+    margin: 0;
     gap: 15px; 
 }
 
@@ -56,6 +58,136 @@ header {
 .navbar a:hover {
     text-decoration: underline; 
 }
+/*
+.hamburger-menu {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+}
+
+.menu-btn {
+  background-color: transparent;
+  color: white;
+  font-size: 24px;
+  padding: 10px 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.menu-btn:hover {
+  background-color: rgb(195, 155, 213);
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 110%;
+  right: 0;
+  background-color: white;
+  min-width: 160px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  border-radius: 6px;
+  z-index: 100;
+}
+
+.dropdown-menu a {
+  color: #333;
+  padding: 12px 16px;
+  display: block;
+  text-decoration: none;
+}
+
+.dropdown-menu a:hover {
+  background-color: #f1f1f1;
+}
+
+.dropdown-menu.show {
+  display: block;
+}
+*/
+
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 10px;
+  border-bottom: 1px solid #2c2f33;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.userinfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.userinfo strong {
+  color: white;
+  font-size: 14px;
+}
+
+.handle {
+  color: #8b949e;
+  font-size: 12px;
+}
+
+#menuBtn {
+  background: transparent;
+  color: white;
+  font-size: 24px;
+  border: none;
+  cursor: pointer;
+}
+
+.sidebar {
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 250px;
+  height: 100%;
+  background: rgb(195, 155, 213);
+  color: white;
+  padding: 20px;
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  z-index: 1001;
+  border-radius: 5px;
+}
+
+.sidebar.open {
+  transform: translateX(0);
+}
+
+.sidebar button {
+  background: transparent;
+  color: white;
+  font-size: 24px;
+  border: none;
+  cursor: pointer;
+  float: right;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 50px;
+}
+
+.sidebar li {
+  margin: 15px 0;
+}
+
+.sidebar a {
+  color: white;
+  text-decoration: none;
+}
+
 
 
 .Detail-page{
@@ -130,19 +262,63 @@ header {
 }
     .history {
       margin-top: 30px;
+      margin-left: 20px;
     }
 
     table {
-      width: 100%;
+      width: 130%;
+      height: 250px;
       border-collapse: collapse;
     }
 
     table th, table td {
       padding: 10px;
       border: 1px solid #ddd;
-      text-align: left;
+      text-align: center;
     }
 
     table th {
       background: #f4f4f4;
     }
+
+  .modal {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 400px;
+  position: relative;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  text-align: center;
+  display: flex;            
+  flex-direction: column;   
+  align-items: center;     
+}
+
+.modal-content input,
+.modal-content button,
+.modal-content p {
+  margin-bottom: 10px;     
+  width: 80%;               
+  max-width: 300px;         
+}
+.close {
+  position: absolute;
+  top: 10px; right: 15px;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  user-select: none;
+  color: red;
+}

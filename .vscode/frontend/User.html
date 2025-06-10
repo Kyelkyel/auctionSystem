@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KoolBulls: An Online Auction Platform for Students</title>
     <link rel="stylesheet" href="css/User.css">
-    <link rel="stylesheet" href="css/items.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet"> 
@@ -14,9 +13,44 @@
 </head>
  
 <body>
-    <header> 
-    <div class="logo">KoolBulls</div>
+  <header> 
+    <nav class="navbar">
+     <section id="home">
+           <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="Admin.html">Auctions</a></li>
+            <li><a href="User.html">Contact</a></li>
+        </ul>
+     </section>
+     </nav>
+     
+      <div class="logo">KoolBulls</div>
+
       
+    <button id="menuBtn">☰</button>
+      
+    <div id="sidebar" class="sidebar">
+    <button id="closeBtn">×</button>
+
+      <div class="profile">
+         <img src="../../images/pfptest.jpg" alt="Profile picture" class="avatar">
+        <div class="userinfo">
+         <strong>USER 01</strong>
+         <span class="handle">@user01</span>
+       </div>
+      </div>
+    
+    <ul>
+      <li><a href="yourProfile.html">Your profile</a></li>
+      <li><a href="sell-item.html">Sell Items</a></li>
+      <li><a href="#">Bidding History</a></li>
+      <li><a href="#">Settings</a></li>
+      <li><a href="#">Sign out</a></li>
+    </ul>
+  </div>
+
+  <div id="overlay" class="overlay"></div>
+
 </header>
 
 <section class="hero">
@@ -27,6 +61,7 @@
                 <img src="../../images/macbook.jpg" alt="Auction Item 1">
                 <img src="../../images/auctionitem2.jpg" alt="Auction Item 2">
                 <img src="../../images/auctionitem3.jpg" alt="Auction Item 3">
+                <img src="../../images/bag.jpg" alt="Auction Item 4">
             </div>
         </div>
 
@@ -41,16 +76,17 @@
 <section id="auction">
 <div class="dropdown">
          <button class="dropbtn" onclick="toggleDropdown()">Browse Categories ▼</button>
-    <div id="dropdownContent" class="dropdown-content">
-             <a href="#">New Items</a>
-             <a href="#">Bid Packs</a>
+            <div id="dropdownContent" class="dropdown-content">
+            <a href="#" onclick="filterCategory('all'); return false;">All</a>
+            <a href="#" onclick="filterCategory('new'); return false;">New Items</a>
+            <a href="#" onclick="filterCategory('bidpacks'); return false;">Bid Packs</a>
             <a href="#" onclick="filterCategory('electronics'); return false;">Electronics & Computers</a>
-             <a href="#">Fashion, Health & Beauty</a>
-             <a href="#">Gift Cards</a>
-             <a href="#">Hobbies, Toys, Outdoors & Games</a>
-             <a href="#">Home, Garden & Tools</a>
-             <a href="#">Kitchen & Dining</a>
-             <a href="#">Motors (Cars, Boats, etc.)</a>
+            <a href="#" onclick="filterCategory('fashion'); return false;">Fashion, Health & Beauty</a>
+            <a href="#" onclick="filterCategory('giftcards'); return false;">Gift Cards</a>
+            <a href="#" onclick="filterCategory('hobbies'); return false;">Hobbies, Toys, Outdoors & Games</a>
+            <a href="#" onclick="filterCategory('home'); return false;">Home, Garden & Tools</a>
+            <a href="#" onclick="filterCategory('kitchen'); return false;">Kitchen & Dining</a>
+            <a href="#" onclick="filterCategory('motors'); return false;">Motors (Cars, Boats, etc.)</a>
      </div>
 </div>
 </section>
@@ -60,162 +96,73 @@
   <button onclick="searchProducts()">🔍</button>
 </div>
 
+<section>
+    <section>
+  <h2 id="category-heading-1" class="h2">Starting In 2 Hours!</h2>
+  <div class="grid-container">
+    <!-- Card 1 -->
+    <div class="auction-card" data-category="electronics">
+      <img src="../../images/macbook.jpg" alt="Product 1">
+      <div class="auction-title">Apple MacBook Air 13"</div>
+      <div class="auction-time">Starts in 2h 20m</div>
+      <div class="auction-price">$6,269</div>
+      <button class="bid-button">BID NOW</button>
+      <div class="buy-now">Buy it now for $6,269</div>
+    </div>
 
-<h2 class="h2">Live Auctions</h2>
-<div class="grid-container">
-  <!-- Card 1 -->
-  <div class="auction-card" data-category="electronics">
-    <img src="../../images/macbook.jpg" alt="Product 1">
-    <div class="auction-title">Apple MacBook Air 13"</div>
-    <div class="auction-time">Starts in 2h 20m</div>
-    <div class="auction-price">$6,269</div>
-    <button class="bid-button">BID NOW</button>
-    <div class="buy-now">Buy it now for $6,269</div>
+    <div class="auction-card" data-category="home-garden">
+      <img src="../../images/jisulife.jpg" alt="Product 7">
+      <div class="auction-title">JisuLife Handheld Fan Ultra2</div>
+      <div class="auction-time">Starts in 2h</div>
+      <div class="auction-price">$71.99</div>
+      <button class="bid-button">BID NOW</button>
+      <div class="buy-now">Buy it now for $71.99</div>
+    </div>
+
+    <div class="auction-card" data-category="home-garden">
+      <img src="../../images/puri.jpg" alt="Product 11">
+      <div class="auction-title">Dyson - Purifier Humidify + Cool Formaldehyde</div>
+      <div class="auction-time">Starts in 2h</div>
+      <div class="auction-price">$999.99</div>
+      <button class="bid-button">BID NOW</button>
+      <div class="buy-now">Buy it now for $999.99</div>
+    </div>
   </div>
+</section>
 
- <!--Card 2-->
-  <div class="auction-card">
-    <img src="https://via.placeholder.com/150" alt="Product 2">
-    <div class="auction-title">Canon EOS Camera</div>
-    <div class="auction-time">Ends in 00:01:20</div>
-    <div class="auction-price">$11,519</div>
-    <button class="bid-button">BID NOW</button>
-    <div class="buy-now">Buy it now for $11,519</div>
+<section>
+  <h2 id="category-heading-2" class="h2">BID NOW!</h2>
+  <div class="grid-container">
+    <div class="auction-card" data-category="electronics">
+      <img src="../../images/canon.jpg" alt="Product 2">
+      <div class="auction-title">Canon EOS Camera</div>
+      <div class="auction-time">Ends in 00:01:20</div>
+      <div class="auction-price">$11,519</div>
+      <button class="bid-button">BID NOW</button>
+      <div class="buy-now">Buy it now for $11,519</div>
+    </div>
+
+    <div class="auction-card" data-category="hobbies">
+      <img src="../../images/partybox.jpg" alt="Product 3">
+      <div class="auction-title">Party Box 710</div>
+      <div class="auction-time">Ends in 00:23:36</div>
+      <div class="auction-price">$799.95</div>
+      <button class="bid-button">BID NOW</button>
+      <div class="buy-now">Buy it now for $799.95</div>
+    </div>
+
+    <div class="auction-card" data-category="electronics">
+      <img src="../../images/tcl.jpg" alt="Product 15">
+      <div class="auction-title">TCL 40" Class S3-Series 1080p HD LED Smart Google TV</div>
+      <div class="auction-time">Ends in 00:48:28</div>
+      <div class="auction-price">$149.99</div>
+      <button class="bid-button">BID NOW</button>
+      <div class="buy-now">Buy it now for $149.99</div>
+    </div>
   </div>
-
-  <div class="auction-card">
-    <img src="https://via.placeholder.com/150" alt="Product 3">
-    <div class="auction-title">Party Box 710</div>
-    <div class="auction-time">Ends in 00:23:36</div>
-    <div class="auction-price">$799.95</div>
-    <button class="bid-button">BID NOW</button>
-    <div class="buy-now">Buy it now for $799.95</div>
-  </div>
+</section>
 
 
-  <div class="auction-card">
-    <img src="https://via.placeholder.com/150" alt="Product 4">
-    <div class="auction-title">AirPods Max</div>
-    <div class="auction-time">Starts in 30m</div>
-    <div class="auction-price">$549</div>
-    <button class="bid-button">BID NOW</button>
-    <div class="buy-now">Buy it now for $549</div>
-  </div>
-
-
-  <div class="auction-card">
-    <img src="https://via.placeholder.com/150" alt="Product 5">
-    <div class="auction-title">PlayStation 5 Pro Console</div>
-    <div class="auction-time">Ends in 23:22:43</div>
-    <div class="auction-price">$649</div>
-    <button class="bid-button">BID NOW</button>
-    <div class="buy-now">Buy it now for $649</div>
-  </div>
-
-
-  <div class="auction-card">
-    <img src="https://via.placeholder.com/150" alt="Product 6">
-    <div class="auction-title">CApple Watch Ultra 2</div>
-    <div class="auction-time">Starts in 3h</div>
-    <div class="auction-price">$799</div>
-    <button class="bid-button">BID NOW</button>
-    <div class="buy-now">Buy it now for $799</div>
-  </div>
-
-   <div class="auction-card">
-    <img src="https://via.placeholder.com/150" alt="Product 7">
-    <div class="auction-title">JisuLife Handheld Fan Ultra2</div>
-    <div class="auction-time">Starts in 1h</div>
-    <div class="auction-price">$71.99</div>
-    <button class="bid-button">BID NOW</button>
-    <div class="buy-now">Buy it now for $71.99</div>
-  </div>
-
-
-  <div class="auction-card">
-    <img src="https://via.placeholder.com/150" alt="Product 8">
-    <div class="auction-title">bella PRO - 10.5-qt. Touchscreen 5-in-1 Indoor Grill & Air Fryer - Stainless Steel</div>
-    <div class="auction-time">Starts in 5h</div>
-    <div class="auction-price">$89.99</div>
-    <button class="bid-button">BID NOW</button>
-    <div class="buy-now">Buy it now for $89.99</div>
-  </div>
-
-
-  <div class="auction-card">
-    <img src="https://via.placeholder.com/150" alt="Product 9">
-    <div class="auction-title">CHI - Steam Iron - Matt Chrome</div>
-    <div class="auction-time">Ends in 13:01:54</div>
-    <div class="auction-price">$104.95</div>
-    <button class="bid-button">BID NOW</button>
-    <div class="buy-now">Buy it now for $104.95</div>
-  </div>
-
-
-  <div class="auction-card">
-    <img src="https://via.placeholder.com/150" alt="Product 10">
-    <div class="auction-title">Insignia™ - 250 Sq. Ft. Portable Air Conditioner - White</div>
-    <div class="auction-time">Starts in 9h</div>
-    <div class="auction-price">$249.99</div>
-    <button class="bid-button">BID NOW</button>
-    <div class="buy-now">Buy it now for $249.99</div>
-  </div>
-
-
-  <div class="auction-card">
-    <img src="https://via.placeholder.com/150" alt="Product 11">
-    <div class="auction-title">Dyson - Purifier Humidify + Cool Formaldehyde - PH04 - White/Gold</div>
-    <div class="auction-time">Starts in 2h</div>
-    <div class="auction-price">$999.99</div>
-    <button class="bid-button">BID NOW</button>
-    <div class="buy-now">Buy it now for $999.99</div>
-  </div>
-
-
-  <div class="auction-card">
-    <img src="https://via.placeholder.com/150" alt="Product 12">
-    <div class="auction-title">Dyson - Cool Tower Fan AM07 - White/Silver</div>
-    <div class="auction-time">Starts in 10m</div>
-    <div class="auction-price">$299.99</div>
-    <button class="bid-button">BID NOW</button>
-    <div class="buy-now">Buy it now for $299.99</div>
-  </div>
-
-
-  <div class="auction-card">
-    <img src="https://via.placeholder.com/150" alt="Product 13">
-    <div class="auction-title">Stanley - 6 Gallon wet/dry vacuum - black
-</div>
-    <div class="auction-time">Ends in 16:09:23</div>
-    <div class="auction-price">$79.99</div>
-    <button class="bid-button">BID NOW</button>
-    <div class="buy-now">Buy it now for $79.99</div>
-  </div>
-
-
-  <div class="auction-card">
-    <img src="https://via.placeholder.com/150" alt="Product 14">
-    <div class="auction-title">bella PRO - Slim Espresso Machine with 20 Bars of Pressure - Stainless Steel</div>
-    <div class="auction-time">Starts in 24h</div>
-    <div class="auction-price">$99.99</div>
-    <button class="bid-button">BID NOW</button>
-    <div class="buy-now">Buy it now for $99.99</div>
-  </div>
-
-
-  <div class="auction-card">
-    <img src="https://via.placeholder.com/150" alt="Product 15">
-    <div class="auction-title">TCL 40" Class S3-Series 1080p HD LED Smart Google TV - 40S350G</div>
-    <div class="auction-time">Ends in 00:48:28</div>
-    <div class="auction-price">$149.99</div>
-    <button class="bid-button">BID NOW</button>
-    <div class="buy-now">Buy it now for $149.99</div>
-  </div>
-<!--
-<div class="showmore-wrapper">
-   <a href="Admin.html"><button class="showmore-btn">Show More...</button></a>
-</div>
--->
 <div id="noResultsMessage">
   No results found.
 </div>
@@ -261,8 +208,10 @@
        
 
     </footer>
+    <script src="Profile.js" defer></script>
     <script src="browse.js" defer></script>
     <script src="search.js" defer></script>
+    <script src="auction-details.js" defer></script>
 </body>
 </html>
 

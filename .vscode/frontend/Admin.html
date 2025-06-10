@@ -1,41 +1,164 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-     <link rel="stylesheet" href="css/Admin.css">
-     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet"> 
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>KoolBulls Admin Panel</title>
+  <link rel="stylesheet" href="css/Admin.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"/>
 </head>
 <body>
 
-<header> 
-    <nav class="navbar">
-           <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="#auction">Auctions</a></li>
-            <li><a href="sell">Sell</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
-           <div class="logo">KoolBulls</div>
+<header>
+    <div class="logo">KoolBulls Admin</div>
+    
+     <div class="hamburger-menu">
+       <button class="menu-btn" id="hamburgerToggle">☰</button>
+       <div class="dropdown-menu" id="hamburgerDropdown">
+        <a href="#">Dashboard</a>
+        <a href="#">Manage Auctions</a>
+        <a href="#">Pending Items</a>
+        <a href="#">Winners</a>
+        <a href="index.html" class="logout-button">Logout</a>
+     </div>
+   
 </header>
-</div>
 
-<main class="Shopping-page">
 
-  
+  <!-- Main content -->
+  <main class="admin-main">
+    <div class="admin-panel">
 
-</main>
+      <!-- Dashboard -->
+      <section class="dashboard" id="dashboard">
+        <h2>Dashboard Overview</h2>
+        <div class="dashboard-stats">
+          <div class="stat">
+            <h3 id="total-auctions">5</h3>
+            <p>Total Auctions</p>
+          </div>
+          <div class="stat">
+            <h3>₱12,499</h3>
+            <p>Total Revenue</p>
+          </div>
+          <div class="stat">
+            <h3>4</h3>
+            <p>Active Bids</p>
+          </div>
+        </div>
+      </section>
 
+      <!-- Manage Auctions -->
+      <section class="manage-auctions" id="auction">
+        <h2>Manage Auctions</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Price</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="auction-list">
+            <tr>
+              <td>Apple MacBook Air</td>
+              <td>₱6,269</td>
+              <td>Upcoming</td>
+              <td><button onclick="deleteAuction(this)">Delete</button></td>
+            </tr>
+            <tr>
+              <td>Canon EOS Camera</td>
+              <td>₱11,519</td>
+              <td>Ongoing</td>
+              <td><button onclick="deleteAuction(this)">Delete</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- Add Auction -->
+      <section class="add-auction" id="add">
+        <h2>Add New Auction</h2>
+        <form id="auction-form">
+          <input type="text" id="title" placeholder="Auction Title" required />
+          <input type="text" id="title" placeholder="Item Description" required />
+          <input type="number" id="price" placeholder="Starting Price (₱)" required />
+          <select id="status">
+            <option value="Upcoming">Upcoming</option>
+            <option value="Ongoing">Ongoing</option>
+          </select>
+          <button type="submit">Add Auction</button>
+        </form>
+      </section>
+
+      <!-- Pending Items from Users -->
+      <section class="pending-auctions" id="pending-items">
+  <h2>Pending Items for Approval</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Image</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Seller</th>
+        <th>Submitted</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody id="pending-list">
+      <tr>
+        <td><img src="../../images/macbook.jpg" alt="Item Image" width="60"></td>
+        <td>Apple MacBook Air</td>
+        <td>2020 Model, 13-inch, like new</td>
+        <td>john@example.com</td>
+        <td>June 9, 2025</td>
+        <td>
+          <button onclick="approveItem(this)">Approve</button>
+          <button onclick="rejectItem(this)">Reject</button>
+        </td>
+      </tr>
+      <!-- More rows dynamically generated -->
+    </tbody>
+  </table>
+</section>
+
+
+      <!-- Winners -->
+      <section class="manage-auctions" id="winners">
+        <h2>Winning Bidders</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Winner</th>
+              <th>Winning Bid</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>PlayStation 5</td>
+              <td>user789</td>
+              <td>₱21,000</td>
+              <td>Paid</td>
+            </tr>
+            <tr>
+              <td>HP Envy Laptop</td>
+              <td>user102</td>
+              <td>₱29,500</td>
+              <td>Pending Payment</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
 
     </div>
-  </div>
+  </main>
 </div>
-
-    <script src="browse.js" defer></script>
-    <script src="search.js" defer></script>
+<script src="Profile.js" defer></script>
+<script src="Admin.js" defer></script>
 </body>
 </html>

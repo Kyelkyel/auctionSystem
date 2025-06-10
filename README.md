@@ -1,7 +1,3 @@
-# auctionSystemHere’s an updated `README.md` section reflecting that your backend uses Java Spring Boot with MySQL as the database, alongside your existing frontend with HTML, CSS, and JavaScript:
-
----
-
 # auctionSystem
 
 An online auction platform with a Java Spring Boot backend connected to a MySQL database, and a frontend built with HTML, CSS, and JavaScript.
