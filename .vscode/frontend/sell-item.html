@@ -7,17 +7,18 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet"> 
-  
-    <title>Document</title>
+    <title>KoolBulls: An Online Auction Platform for Students</title>
+
 </head>
+
 <body>
  <header> 
     <nav class="navbar">
      <section id="home">
            <ul class="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="Admin.html">Auctions</a></li>
-            <li><a href="User.html">Contact</a></li>
+            <li><a href="User.html">Home</a></li>
+            <li><a href=""> Auctions</a></li>
+            <li><a href="">Contact</a></li>
         </ul>
      </section>
      </nav>
@@ -39,17 +40,17 @@
       </div>
     
     <ul>
-      <li><a href="yourProfile.html">Your profile</a></li>
-      <li><a href="sell-item.html">Sell Items</a></li>
-      <li><a href="#">Bidding History</a></li>
-      <li><a href="#">Settings</a></li>
-      <li><a href="#">Sign out</a></li>
+      <li><option href="yourProfile.html">Your profile</option></li>
+      <li><option href="sell-item.html">Sell Items</option></li>
+      <li><option href="#">Auction</option></li>
+      <li><option href="#">Settings</option></li>
+      <li><option href="#">Sign out</option></li>
     </ul>
-  </div>
+   </div>
 
-  <div id="overlay" class="overlay"></div>
+   <div id="overlay" class="overlay"></div>
 
-</header>
+ </header>
 
  <main>
   <div class="form-container">
@@ -71,6 +72,31 @@
         <label for="itemDescription">Description</label>
         <input id="itemDescription" rows="4" placeholder="Describe your item..." required>
       </div>
+
+    <div class="itemCategory">
+        <label for="itemCategory">Categories</label>
+          <select id="itemCategory" required>
+            <option value="" disabled selected>Select option category </option>
+            <option value="bidpacks">Bid Packs</option>
+            <option value="electronics">Electronics & Computers</option>
+            <option value= "fashion">Fashion, Health & Beauty</option>
+            <option value="giftcards">Gift Cards</option>
+            <option value="hobbies">Hobbies, Toys, Outdoors & Games</option>
+            <option value="home">Home, Garden & Tools</option>
+            <option value="kitchen">Kitchen & Dining</option>
+            <option value="motors">Motors (Cars, Boats, etc.)</option>
+         </select>
+    </div>
+
+    <div class="itemCategory">
+      <label for="startTime">Start Time</label>
+     <input type="datetime-local" id="startTime" name="startTime" required>
+    </div>
+
+    <div class="itemCategory">
+        <label for="endTime">End Time</label>
+        <input type="datetime-local" id="endTime" name="endTime" required>
+    </div>
 
       <div class="form-group">
         <label for="startingBid">Starting Bid ($)</label>
