@@ -64,20 +64,16 @@
 
   <h2 id="category-heading-1" class="h2">Live Auctions</h2>
 
-<!--
- <div id="login-modal" class="modal">
+
+<div id="login-modal" class="modal" style="display: none;">
   <div class="modal-content">
     <span id="close-modal" onclick="closeModal()">&times;</span>
-    <h2>Welcome! Please Sign-Up First!</h2>
-    <input type="text" placeholder="Pick a username" id="username" required />
-    <input type="email" placeholder="Email" id="email" required />
-    <input type="password" placeholder="Password (8+ characters)" id="password" required />
-    <input type="password" placeholder="Re-Enter Password (8+ characters)" id="Reenter-password" required />
-    <button onclick="handleLogin()">NEXT</button>
-    <p>Already have an account? <a href="#" onclick="handleLogin()">Log in</a></p>
+    <h2>Please Sign-Up First</h2>
+    <button onclick="redirectToSignup()">Sign Up</button>
+    <p>Already have an account? <a href="Log-in.html" onclick="redirectToLogin()">Log in</a></p>
   </div>
- </div>
--->
+</div>
+
 <div class="grid-container">
    
  <div class="auction-card" data-category="electronics">
@@ -217,16 +213,7 @@
  </div>
 </div>
 
-   <div id="bid-modal" class="modal" style="display:none;">
-    <div class="modal-content">
-      <span id="close-bid-modal" class="close">&times;</span>
-      <h3>Place Your Bid</h3>
-      <input type="text" id="bid-username" placeholder="Username" required />
-      <input type="number" id="bid-amount" placeholder="Bid Amount" min="0.01" step="0.01" required />
-      <textarea id="bid-comments" placeholder="Comments (optional)"></textarea>
-      <button id="submit-bid">Submit Bid</button>
-    </div>
-  </div>
+
 
  
     <div id="noResultsMessage"> No results found.
@@ -272,7 +259,7 @@
        
 
   </footer>
-    <script src="Bid-Button.js" defer></script>
+  <script src="Signup-Bidbtn.js" defer></script>
     <script src="browse.js" defer></script>
     <script src="search.js" defer></script>
     <script src="auction-details.js" defer></script>

@@ -14,16 +14,25 @@
 <header>
     <div class="logo">KoolBulls Admin</div>
     
-     <div class="hamburger-menu">
-       <button class="menu-btn" id="hamburgerToggle">☰</button>
-       <div class="dropdown-menu" id="hamburgerDropdown">
-        <a href="#">Dashboard</a>
-        <a href="#">Manage Auctions</a>
-        <a href="#">Pending Items</a>
-        <a href="#">Winners</a>
-        <a href="index.html" class="logout-button">Logout</a>
-     </div>
-   
+    <button id="menuBtn">☰</button>
+      
+    <div id="sidebar" class="sidebar">
+    <button id="closeBtn">×</button>
+
+      <div class="profile">
+         <img src="../../images/pfptest.jpg" alt="Profile picture" class="avatar">
+        <div class="userinfo">
+         <strong>Admin</strong>
+         <span class="handle">Admin</span>
+       </div>
+      </div>
+    <ul>
+      <li><a href="yourProfile.html">Your profile</a></li>
+      <li><a href="sell-item.html">Sell Items</a></li>
+      <li><a href="#">Auctions</a></li>
+      <li><a href="#">Settings</a></li>
+      <li><a href="#">Sign out</a></li>
+    </ul>
 </header>
 
 
@@ -31,7 +40,7 @@
   <main class="admin-main">
     <div class="admin-panel">
 
-      <!-- Dashboard -->
+  <!-- Dashboard -->
       <section class="dashboard" id="dashboard">
         <h2>Dashboard Overview</h2>
         <div class="dashboard-stats">
@@ -40,8 +49,8 @@
             <p>Total Auctions</p>
           </div>
           <div class="stat">
-            <h3>₱12,499</h3>
-            <p>Total Revenue</p>
+            <h3>10</h3>
+            <p>Sold Items</p>
           </div>
           <div class="stat">
             <h3>4</h3>
@@ -59,6 +68,8 @@
               <th>Title</th>
               <th>Price</th>
               <th>Status</th>
+              <th>Date Submitted</th>
+              <th>Time</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -67,32 +78,22 @@
               <td>Apple MacBook Air</td>
               <td>₱6,269</td>
               <td>Upcoming</td>
+              <td>June 9, 2025</td>
+              <td>12:00 PM</td>
               <td><button onclick="deleteAuction(this)">Delete</button></td>
             </tr>
             <tr>
               <td>Canon EOS Camera</td>
               <td>₱11,519</td>
               <td>Ongoing</td>
+              <td>June 9, 2025</td>
+              <td>12:00 PM</td>
               <td><button onclick="deleteAuction(this)">Delete</button></td>
             </tr>
           </tbody>
         </table>
       </section>
 
-      <!-- Add Auction -->
-      <section class="add-auction" id="add">
-        <h2>Add New Auction</h2>
-        <form id="auction-form">
-          <input type="text" id="title" placeholder="Auction Title" required />
-          <input type="text" id="title" placeholder="Item Description" required />
-          <input type="number" id="price" placeholder="Starting Price (₱)" required />
-          <select id="status">
-            <option value="Upcoming">Upcoming</option>
-            <option value="Ongoing">Ongoing</option>
-          </select>
-          <button type="submit">Add Auction</button>
-        </form>
-      </section>
 
       <!-- Pending Items from Users -->
       <section class="pending-auctions" id="pending-items">
@@ -104,17 +105,21 @@
         <th>Title</th>
         <th>Description</th>
         <th>Seller</th>
-        <th>Submitted</th>
+        <th>Seller ID</th>
+        <th>Date Submitted</th>
+        <th>Time</th>
         <th>Action</th>
       </tr>
     </thead>
     <tbody id="pending-list">
       <tr>
-        <td><img src="../../images/macbook.jpg" alt="Item Image" width="60"></td>
+       <td><img src="../../images/macbook.jpg" class="item-image" /></td>
         <td>Apple MacBook Air</td>
         <td>2020 Model, 13-inch, like new</td>
         <td>john@example.com</td>
+        <td><img src="../../images/macbook.jpg" class="seller-image" /></td>
         <td>June 9, 2025</td>
+        <td>12:00 PM</td>
         <td>
           <button onclick="approveItem(this)">Approve</button>
           <button onclick="rejectItem(this)">Reject</button>
@@ -135,6 +140,8 @@
               <th>Item</th>
               <th>Winner</th>
               <th>Winning Bid</th>
+              <th>Date Submitted</th>
+              <th>Time</th>
               <th>Status</th>
             </tr>
           </thead>
@@ -143,12 +150,16 @@
               <td>PlayStation 5</td>
               <td>user789</td>
               <td>₱21,000</td>
+              <td>June 9, 2025</td>
+              <td>12:00 PM</td>
               <td>Paid</td>
             </tr>
             <tr>
               <td>HP Envy Laptop</td>
               <td>user102</td>
               <td>₱29,500</td>
+              <td>June 9, 2025</td>
+              <td>12:00 PM</td>
               <td>Pending Payment</td>
             </tr>
           </tbody>

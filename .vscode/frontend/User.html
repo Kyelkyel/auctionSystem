@@ -43,7 +43,7 @@
     <ul>
       <li><a href="yourProfile.html">Your profile</a></li>
       <li><a href="sell-item.html">Sell Items</a></li>
-      <li><a href="#">Bidding History</a></li>
+      <li><a href="#">Auctions</a></li>
       <li><a href="#">Settings</a></li>
       <li><a href="#">Sign out</a></li>
     </ul>
@@ -105,62 +105,73 @@
       <img src="../../images/macbook.jpg" alt="Product 1">
       <div class="auction-title">Apple MacBook Air 13"</div>
       <div class="auction-time">Starts in 2h 20m</div>
-      <div class="auction-price">$6,269</div>
-      <button class="bid-button">BID NOW</button>
-      <div class="buy-now">Buy it now for $6,269</div>
+      <div class="auction-price">₱6,269</div>
+      <button class="bid-button">PLACE BID</button>
+      <div class="buy-now">Buy it now for ₱6,269</div>
     </div>
 
     <div class="auction-card" data-category="home-garden">
       <img src="../../images/jisulife.jpg" alt="Product 7">
       <div class="auction-title">JisuLife Handheld Fan Ultra2</div>
       <div class="auction-time">Starts in 2h</div>
-      <div class="auction-price">$71.99</div>
-      <button class="bid-button">BID NOW</button>
-      <div class="buy-now">Buy it now for $71.99</div>
+      <div class="auction-price">₱71.99</div>
+      <button class="bid-button">PLACE BID</button>
+      <div class="buy-now">Buy it now for ₱71.99</div>
     </div>
 
     <div class="auction-card" data-category="home-garden">
       <img src="../../images/puri.jpg" alt="Product 11">
       <div class="auction-title">Dyson - Purifier Humidify + Cool Formaldehyde</div>
       <div class="auction-time">Starts in 2h</div>
-      <div class="auction-price">$999.99</div>
-      <button class="bid-button">BID NOW</button>
-      <div class="buy-now">Buy it now for $999.99</div>
+      <div class="auction-price">₱999.99</div>
+      <button class="bid-button">PLACE BID</button>
+      <div class="buy-now">Buy it now for ₱999.99</div>
     </div>
   </div>
 </section>
 
 <section>
-  <h2 id="category-heading-2" class="h2">BID NOW!</h2>
+  <h2 id="category-heading-2" class="h2">PLACE BID!</h2>
   <div class="grid-container">
     <div class="auction-card" data-category="electronics">
       <img src="../../images/canon.jpg" alt="Product 2">
       <div class="auction-title">Canon EOS Camera</div>
       <div class="auction-time">Ends in 00:01:20</div>
-      <div class="auction-price">$11,519</div>
-      <button class="bid-button">BID NOW</button>
-      <div class="buy-now">Buy it now for $11,519</div>
+      <div class="auction-price">₱11,519</div>
+      <button class="bid-button">PLACE BID</button>
+      <div class="buy-now">Buy it now for ₱11,519</div>
     </div>
 
     <div class="auction-card" data-category="hobbies">
       <img src="../../images/partybox.jpg" alt="Product 3">
       <div class="auction-title">Party Box 710</div>
       <div class="auction-time">Ends in 00:23:36</div>
-      <div class="auction-price">$799.95</div>
-      <button class="bid-button">BID NOW</button>
-      <div class="buy-now">Buy it now for $799.95</div>
+      <div class="auction-price">₱799.95</div>
+      <button class="bid-button">PLACE BID</button>
+      <div class="buy-now">Buy it now for ₱799.95</div>
     </div>
 
     <div class="auction-card" data-category="electronics">
       <img src="../../images/tcl.jpg" alt="Product 15">
       <div class="auction-title">TCL 40" Class S3-Series 1080p HD LED Smart Google TV</div>
       <div class="auction-time">Ends in 00:48:28</div>
-      <div class="auction-price">$149.99</div>
-      <button class="bid-button">BID NOW</button>
-      <div class="buy-now">Buy it now for $149.99</div>
+      <div class="auction-price">₱149.99</div>
+      <button class="bid-button">PLACE BID</button>
+      <div class="buy-now">Buy it now for ₱149.99</div>
     </div>
   </div>
 </section>
+
+  <div id="bid-modal" class="modal" style="display:none;">
+    <div class="modal-content">
+      <span id="close-bid-modal" class="close">&times;</span>
+      <h3>Place Your Bid</h3>
+      <input type="text" id="bid-username" placeholder="Username" required />
+      <input type="number" id="bid-amount" placeholder="Bid Amount" min="0.01" step="0.01" required />
+      <textarea id="bid-comments" placeholder="Comments (optional)"></textarea>
+      <button id="submit-bid">Submit Bid</button>
+    </div>
+  </div>
 
 
 <div id="noResultsMessage">
@@ -208,6 +219,7 @@
        
 
     </footer>
+    <script src="Bid-Button.js" defer></script>
     <script src="Profile.js" defer></script>
     <script src="browse.js" defer></script>
     <script src="search.js" defer></script>

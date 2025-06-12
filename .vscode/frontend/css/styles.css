@@ -188,7 +188,7 @@ footer{
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: url('../../../images/headerbg.jpg') no-repeat;
+    background: url('../../../images/regisBg.jpg') no-repeat;
     background-size: cover;
     background-position: center;
 }
@@ -380,3 +380,29 @@ margin-top: 30px;
 
 }
 
+
+.modal {
+  display: none; /* HIDDEN BY DEFAULT */
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 20px;
+  width: 350px;
+  margin: 15% auto;
+  border-radius: 10px;
+  text-align: center;
+  position: relative;
+}
+
+#close-modal {
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  font-size: 24px;
+  cursor: pointer;
+}
