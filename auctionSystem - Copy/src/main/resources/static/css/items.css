@@ -1,3 +1,4 @@
+
 .grid-container {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -75,3 +76,54 @@
     text-align: center;
     align-items: center;
     }
+
+.pagination-container {
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 40px 0;
+  padding: 0 20px;
+  
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 10px 20px;
+  background: rgb(195, 155, 213);
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  min-width: 200px;
+}
+
+.pagination button {
+  background: white;
+  border: 1px solid #ccc;
+  padding: 8px 14px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: bold;
+  color: #333;
+  min-width: 40px;
+  transition: 0.2s ease;
+}
+
+.pagination button.active {
+  background: #007bff;
+  color: white;
+  border-color: #007bff;
+}
+
+.pagination button:hover {
+  background-color: #ffc107;
+  color: black;
+  border-color: #ffc107;
+}
+
+
+

@@ -75,7 +75,7 @@ button {
 }
 
 .login-btn {
-    background: rgb(87, 81, 81);
+    background: rgb(195, 155, 213);
     color: white;
     border: 2px;
     font-weight: normal;
@@ -96,7 +96,7 @@ button {
 
 
 .hero {
-    background-image: url("../../../images/c461ce34d6528ff2c2e3566bbe5a0bf6.jpg");
+    background-image: url("media/c461ce34d6528ff2c2e3566bbe5a0bf6.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -115,51 +115,10 @@ button {
         3px 3px 5px rgba(0, 0, 0, 0.7),
         -2px -2px 5px rgba(255, 255, 255, 0.3);
 }
+
 .container {
     background: rgb(13, 0, 38);
 }
-/*
-.container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 20px;
-    background: url('http://127.0.0.1:5500/images/6186390f0dd40285e85933c0148015a1.jpg') no-repeat;
-    background-size: cover;
-    background-position: center;
-    background-size: cover;
-    background-position: center;
-    color: #0D0D11;
-
-}
-
-/*
-.image-slider {
-    width: 600px; 
-    height: 550px; 
-    overflow: hidden;
-    position: relative;
-    border-radius: 10px;
-}
-
-.slides {
-    display: flex;
-    width: 60%; 
-    animation: slide 15s infinite; 
-}
-
-.slides img {
-    width: 100%;
-    transition: transform 0.5s ease-in-out;
-}
-
-@keyframes slide {
-    0% { transform: translateX(0%); }
-    33% { transform: translateX(-100%); }
-    66% { transform: translateX(-200%); }
-    100% { transform: translateX(0%); }
-}
-*/
 
 .text-box {
     flex: 1;
@@ -195,6 +154,7 @@ button {
     transition: 0.3s;
 }
 
+/*
 .bid-btn {
     font-size: 20px;
     background: #686464;
@@ -213,9 +173,10 @@ button {
 .sell-btn:hover {
     opacity: 0.8;
 }
+*/
 
 footer{
-    background-color: gray;
+    background-color: rgb(195, 155, 213);
     background-position: cover;
     display: flex;
 }
@@ -247,7 +208,7 @@ footer{
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: url(../../../images/headerbg.jpg) no-repeat;
+    background: url('media/headerbg.jpg') no-repeat;
     background-size: cover;
     background-position: center;
 }
@@ -353,7 +314,7 @@ margin-top: 30px;
 }
 
 .dropbtn {
-  background-color: #300040;
+  background-color: rgb(195, 155, 213);
   color: white;
   padding: 5px 10px;
   font-size: 16px;
@@ -364,7 +325,7 @@ margin-top: 30px;
   margin-left: 20px;
 }
 
-/* Base hidden state */
+
 .dropdown-content {
   position: absolute;
   background-color: #f9f9f9;
@@ -379,7 +340,7 @@ margin-top: 30px;
 
 /* Show state with animation */
 .dropdown-content.show {
-  max-height: 1000px; /* large enough to show all links */
+  max-height: 1000px; 
   opacity: 1;
 }
 
@@ -416,7 +377,7 @@ margin-top: 30px;
   padding: 10px 14px;
   font-size: 12px;
   height: 40px;
-  border: 1px solid #300040;
+  border: 1px solid rgb(195, 155, 213);
   background-color: #300040;
   color: white;
   cursor: pointer;
@@ -427,3 +388,15 @@ margin-top: 30px;
 .search-container button:hover {
   background-color: black;
 }
+
+
+#noResultsMessage {
+  color: white;
+  font-size: 1.2em;
+  margin-top: 20px;
+  display: none;
+ text-align: center;
+ margin-bottom: 20px;
+
+}
+

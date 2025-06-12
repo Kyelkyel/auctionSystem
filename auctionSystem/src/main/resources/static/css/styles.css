@@ -96,7 +96,7 @@ button {
 
 
 .hero {
-    background-image: url("../../../images/c461ce34d6528ff2c2e3566bbe5a0bf6.jpg");
+    background-image: url("media/c461ce34d6528ff2c2e3566bbe5a0bf6.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -208,7 +208,7 @@ footer{
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: url('../../../images/headerbg.jpg') no-repeat;
+    background: url('media/headerbg.jpg') no-repeat;
     background-size: cover;
     background-position: center;
 }
