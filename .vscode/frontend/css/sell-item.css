@@ -161,7 +161,7 @@ main {
   padding: 1rem;
 }
 
-/* Form Styling */
+
 .form-container {
   background: #ffffff;
   padding: 2rem;
@@ -215,3 +215,31 @@ button[type="submit"]:hover {
   background-color: #5e35b1;
 }
 
+.itemCategory {
+  margin-bottom: 15px;
+}
+
+.itemCategory label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 6px;
+  color: #333;
+}
+
+.itemCategory select {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #fff;
+  color: #333;
+  appearance: none; /* Removes default dropdown arrow (can customize if needed) */
+  transition: border-color 0.3s;
+}
+
+.itemCategory select:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0,123,255,0.3);
+}
