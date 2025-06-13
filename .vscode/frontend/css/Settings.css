@@ -1,14 +1,11 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
-}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
 
-body {
-  background: #300040;
-  color: white;
-}
+
 header {
     top: 0;
     left: 0;
@@ -44,7 +41,6 @@ header {
     padding: 0;
     margin: 0;
     gap: 15px; 
-    margin-top: -30px;
 }
 
 .navbar a {
@@ -95,7 +91,7 @@ header {
   border: none;
   cursor: pointer;
   margin-right: 10px;
-  margin-top: 5px;
+  margin-top: 0;
 }
 
 .sidebar {
@@ -155,64 +151,118 @@ header {
 .overlay.show {
   display: none;
 }
- h2 {
-      color: rgb(195, 155, 213);
-      margin-bottom: 10px;
+
+    body {
+      background: linear-gradient(145deg, #0d0026, #1e1033);
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      background-size: cover;
+      min-height: 100vh;
+      color: white;
+      padding-top: 100px;
     }
 
-    section {
-      background-color: linear-gradient(145deg, #0d0026, #1e1033);
-      padding: 20px;
+     .settings-wrapper {
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 30px;
+      background-color: #1e1033;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    }
+
+    .settings-wrapper h2 {
+      text-align: center;
+      color: rgb(195, 155, 213);
+      margin-bottom: 30px;
+      font-size: 24px;
+    }
+
+    .form-group {
       margin-bottom: 20px;
-      border-radius: 5px;
     }
 
     label {
       display: block;
-      margin-bottom: 5px;
-      font-weight: 600;
+      margin-bottom: 6px;
+      color: white;
+      font-weight: 500;
     }
 
-    input, select {
+    input[type="text"],
+    input[type="password"],
+    input[type="file"] {
       width: 100%;
-      padding: 10px;
-      margin-bottom: 15px;
-      border-radius: 5px;
+      padding: 10px 12px;
       border: none;
-      background-color: #5e2d79;
+      border-radius: 6px;
+      font-size: 14px;
+      background-color: #300040;
       color: white;
     }
 
-    input:focus, select:focus {
+    input[type="file"] {
+      padding: 5px 0;
+    }
+
+    input:focus {
       outline: 2px solid rgb(195, 155, 213);
     }
 
-    .form-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
+    .preview-img {
+      display: block;
+      margin: 15px auto;
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 2px solid white;
+    }
+
+       .button-group {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .submit-btn,
+    .cancel-btn {
+      flex: 1;
+      padding: 12px;
+      font-size: 16px;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .submit-btn {
+      background-color: rgb(195, 155, 213);
+      color: white;
+    }
+
+    .submit-btn:hover {
+      background-color: #a47eb8;
+    }
+
+    .cancel-btn {
+      background-color: transparent;
+      color: white;
+      border: 2px solid rgb(195, 155, 213);
+    }
+
+    .cancel-btn:hover {
+      background-color: rgba(255, 255, 255, 0.1);
     }
 
     @media (max-width: 600px) {
-      .form-grid {
-        grid-template-columns: 1fr;
+      .settings-wrapper {
+        margin: 20px;
+        padding: 20px;
+      }
+
+      .button-group {
+        flex-direction: column;
       }
     }
-
-.bids-section, .sold-section {
-  background: rebeccapurple;
-  padding: 20px;
-  margin-top: 10px;
-  border-radius: 10px;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-ul li {
-  padding: 6px 0;
-  border-bottom: 1px solid #30363d;
-  color: white;
-}

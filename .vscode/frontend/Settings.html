@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/Settings.css">
+    <link rel="stylesheet" href="css/User.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet"> 
+  
+    <title>Document</title>
+</head>
+<body>
+
+<header> 
+    <nav class="navbar">
+     
+        <ul class="nav-links">
+            <li><a href="User.html">Home</a></li>
+            <li><a href="">Auctions</a></li>
+            <li><a href="">Contact</a></li>
+        </ul>
+    
+    </nav>
+     
+      <div class="logo">KoolBulls</div>
+
+      
+     <button id="menuBtn">☰</button>
+      
+  <div id="sidebar" class="sidebar">
+     <button id="closeBtn">×</button>
+
+      <div class="profile">
+         <img src="../../images/pfptest.jpg" alt="Profile picture" class="avatar">
+        <div class="userinfo">
+         <strong>USER 01</strong>
+         <span class="handle">@user01</span>
+        </div>
+      </div>
+    
+     <ul>
+      <li><a href="yourProfile.html">Your profile</a></li>
+      <li><a href="sell-item.html">Sell Items</a></li>
+      <li><a href="Auctioneer.html">Auctions</a></li>
+      <li><a href="">Settings</a></li>
+      <li><a href="#">Sign out</a></li>
+     </ul>
+  </div>
+
+   <div id="overlay" class="overlay"></div>
+
+</header>
+
+
+   <div class="settings-wrapper">
+    <h2>Account Settings</h2>
+    <form>
+      <div class="form-group">
+        <label for="profilePic">Upload Profile Picture</label>
+        <input type="file" id="profilePic" name="profilePic" accept="image/*" onchange="previewImage(event)">
+        <img id="preview" class="preview-img" src="#" alt="Profile Preview" style="display: none;" />
+      </div>
+
+      <div class="form-group">
+        <label for="username">New Username</label>
+        <input type="text" id="username" name="username" placeholder="Enter new username">
+      </div>
+
+      <div class="form-group">
+        <label for="password">New Password</label>
+        <input type="password" id="password" name="password" placeholder="Enter new password">
+      </div>
+
+      <div class="form-group">
+        <label for="confirmPassword">Confirm Password</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm password">
+      </div>
+
+       <div class="button-group">
+        <button type="submit" class="submit-btn">Save Changes</button>
+        <button type="button" class="cancel-btn" onclick="window.history.back()">Cancel</button>
+      </div>
+    </form>
+  </div>
+
+
+  <script src="Profile.js"></script>
+  <script src="Settings.js"></script>
+</body>
+</html>
