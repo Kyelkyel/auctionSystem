@@ -2,9 +2,15 @@ USE auction_system;
 
 -- Create sample user forda testing
 INSERT INTO Users (
-  username, password, email, userStatus, if_admin, address, contactNo, name, schoolName, studentID, age, sex, ifStudentVerified
+  username, password, email, userStatus, if_admin, address, contactNo, name, schoolName, studentID, age, sex, profile_location
 ) VALUES (
-  'johndoe', 'securePass123', 'johndoe@example.com', 'ONLINE', FALSE, '123 Main St', 1234567890, 'John Doe', 'Example University', 2023456, 21, 'Male', TRUE
+  'Jensen', '1234', 'jensen@gmail.com', 'OFFLINE', true, '123 Main St', '0913245692', 'Jensen Santillan', 'NU Manila', '2023-1492', 24, 'Female', "css/images/userImages/550e8400-e29b-41d4-a716-446655440000.jpg"
+);
+
+INSERT INTO Users (
+  username, password, email, userStatus, if_admin, address, contactNo, name, schoolName, studentID, age, sex, profile_location
+) VALUES (
+  'Matthew', '1234', 'matthew@gmail.com', 'OFFLINE', false, '123 Main St', '0913256713', 'Matthew Dwayne', 'NU Manila', '2022-1313', 20, 'Male', "css/images/userImages/523e6500-e13b-45r3-b346-563412340123.jpg"
 );
 
 -- Start the transaction, it will not be saved if you choose ROLLBACK, it will be applied it you choose COMMIT

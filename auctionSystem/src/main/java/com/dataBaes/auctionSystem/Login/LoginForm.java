@@ -1,4 +1,4 @@
-package com.dataBaes.auctionSystem;
+package com.dataBaes.auctionSystem.Login;
 
 
 public class LoginForm {
@@ -12,4 +12,8 @@ public class LoginForm {
     
     public String getPassword() { return password; }
     public void setPassword(String password) { this.password = password; }
+    
+    
+    
+    
 }

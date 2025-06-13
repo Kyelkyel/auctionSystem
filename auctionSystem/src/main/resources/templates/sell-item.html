@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- ... existing head content ... -->
+    <link rel="stylesheet" th:href="@{/css/sell-item.css}" />
+</head>
+
+<body>
+ <!-- ... existing header content ... -->
+
+ <main>
+  <div class="form-container">
+    <h2>Sell an Item</h2>
+
+    <!-- CHANGED: Form action & added th:object -->
+    <form id="sellForm" th:action="@{/submitAuctionCreationForm}" th:object="${auctionCreationForm}" th:method="post" enctype="multipart/form-data">
+      <div class="form-group">
+        <label for="itemImage">Item Image</label>
+        <input type="file" id="itemImage" name="itemImage" accept="image/*" required>
+        <img id="previewImage" class="item-preview" src="" alt="" style="display: none;">
+      </div>
+
+      <div class="form-group">
+        <label for="itemTitle">Item Title</label>
+        <!-- Added th:field -->
+        <input type="text" id="itemTitle" th:field="*{itemTitle}" placeholder="e.g., Vintage Watch" required>
+      </div>
+
+      <div class="form-group">
+        <label for="itemDescription">Description</label>
+        <input id="itemDescription" th:field="*{itemDescription}" rows="4" placeholder="Describe your item..." required></input>
+       </div>
+
+    <div class="itemCategory">
+        <label for="itemCategory">Categories</label>
+          <!-- Added th:field -->
+          <select id="itemCategory" th:field="*{itemCategory}" required>
+            <option value="" disabled selected>Select option category </option>
+            <option value="bidpacks">Bid Packs</option>
+            <!-- ... other options ... -->
+         </select>
+    </div>
+
+    <div class="itemCategory">
+      <label for="startTime">Start Time</label>
+      <!-- Added th:field -->
+      <input type="datetime-local" id="startTime" th:field="*{startTime}" required>
+    </div>
+
+    <div class="itemCategory">
+        <label for="endTime">End Time</label>
+        <!-- Added th:field -->
+        <input type="datetime-local" id="endTime" th:field="*{endTime}" required>
+    </div>
+
+      <div class="form-group">
+        <label for="startingBid">Starting Bid ($)</label>
+        <!-- Added th:field -->
+        <input type="number" id="startingBid" th:field="*{startingBid}" step="0.01" min="0" required>
+      </div>
+
+      <div class="form-group">
+        <label>Seller Info</label>
+        <!-- Added th:field to all seller info fields -->
+        <input type="text" th:field="*{sellerInfoName}" placeholder="Name or Username" required>
+        <input type="email" th:field="*{sellerInfoEmail}" placeholder="Email" required>
+        <input type="tel" th:field="*{sellerInfoPhone}" placeholder="Phone Number" required>
+        <input type="text" th:field="*{sellerInfoLocation}" placeholder="Location" required>
+      </div>
+
+      <button type="submit">Submit Listing</button>
+    </form>
+  </div>
+ </main>
+
+  <script th:src="@{/javascript/Profile.js}"></script>
+</body>
+</html>

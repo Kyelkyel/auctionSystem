@@ -1,41 +1,179 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-     <link rel="stylesheet" href="css/Admin.css">
-     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet"> 
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>KoolBulls Admin Panel</title>
+  <!-- Thymeleaf resolves CSS path -->
+  <link rel="stylesheet" th:href="@{/css/Admin.css}" />
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"/>
 </head>
 <body>
 
-<header> 
-    <nav class="navbar">
-           <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="#auction">Auctions</a></li>
-            <li><a href="sell">Sell</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
-           <div class="logo">KoolBulls</div>
+<header>
+    <div class="logo">KoolBulls Admin</div>
+    
+    <button id="menuBtn">☰</button>
+      
+    <div id="sidebar" class="sidebar">
+      <button id="closeBtn">×</button>
+
+      <div class="profile">
+         <!-- Use Thymeleaf to resolve image src -->
+         <img th:src="@{/images/pfptest.jpg}" alt="Profile picture" class="avatar"/>
+         <div class="userinfo">
+           <strong>Admin</strong>
+           <span class="handle">Admin</span>
+         </div>
+      </div>
+      <ul>
+        <!-- Use th:href for internal links, adjust paths as needed -->
+        <li><a th:href="@{/yourProfile}">Your profile</a></li>
+        <li><a th:href="@{/sell-item}">Sell Items</a></li>
+        <li><a th:href="@{/auctions}">Auctions</a></li>
+        <li><a th:href="@{/settings}">Settings</a></li>
+        <li><a th:href="@{/signout}">Sign out</a></li>
+      </ul>
+    </div>
 </header>
-</div>
 
-<main class="Shopping-page">
+<!-- Main content -->
+<main class="admin-main">
+  <div class="admin-panel">
 
-  
+    <!-- Dashboard -->
+    <section class="dashboard" id="dashboard">
+      <h2>Dashboard Overview</h2>
+      <div class="dashboard-stats">
+        <div class="stat">
+          <h3 id="total-auctions">5</h3>
+          <p>Total Auctions</p>
+        </div>
+        <div class="stat">
+          <h3>10</h3>
+          <p>Sold Items</p>
+        </div>
+        <div class="stat">
+          <h3>4</h3>
+          <p>Active Bids</p>
+        </div>
+      </div>
+    </section>
 
+    <!-- Manage Auctions -->
+    <section class="manage-auctions" id="auction">
+      <h2>Manage Auctions</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Price</th>
+            <th>Status</th>
+            <th>Date Submitted</th>
+            <th>Time</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="auction-list">
+          <tr>
+            <td>Apple MacBook Air</td>
+            <td>₱6,269</td>
+            <td>Upcoming</td>
+            <td>June 9, 2025</td>
+            <td>12:00 PM</td>
+            <td><button onclick="deleteAuction(this)">Delete</button></td>
+          </tr>
+          <tr>
+            <td>Canon EOS Camera</td>
+            <td>₱11,519</td>
+            <td>Ongoing</td>
+            <td>June 9, 2025</td>
+            <td>12:00 PM</td>
+            <td><button onclick="deleteAuction(this)">Delete</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Pending Items from Users -->
+    <section class="pending-auctions" id="pending-items">
+      <h2>Pending Items for Approval</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Seller</th>
+            <th>Seller ID</th>
+            <th>Date Submitted</th>
+            <th>Time</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="pending-list">
+          <tr>
+            <!-- Resolve image src with Thymeleaf -->
+            <td><img th:src="@{/images/macbook.jpg}" class="item-image" alt="Item Image"/></td>
+            <td>Apple MacBook Air</td>
+            <td>2020 Model, 13-inch, like new</td>
+            <td>john@example.com</td>
+            <td><img th:src="@{/images/macbook.jpg}" class="seller-image" alt="Seller Image"/></td>
+            <td>June 9, 2025</td>
+            <td>12:00 PM</td>
+            <td>
+              <button onclick="approveItem(this)">Approve</button>
+              <button onclick="rejectItem(this)">Reject</button>
+            </td>
+          </tr>
+          <!-- More rows dynamically generated -->
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Winners -->
+    <section class="manage-auctions" id="winners">
+      <h2>Winning Bidders</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Winner</th>
+            <th>Winning Bid</th>
+            <th>Date Submitted</th>
+            <th>Time</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>PlayStation 5</td>
+            <td>user789</td>
+            <td>₱21,000</td>
+            <td>June 9, 2025</td>
+            <td>12:00 PM</td>
+            <td>Paid</td>
+          </tr>
+          <tr>
+            <td>HP Envy Laptop</td>
+            <td>user102</td>
+            <td>₱29,500</td>
+            <td>June 9, 2025</td>
+            <td>12:00 PM</td>
+            <td>Pending Payment</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+  </div>
 </main>
 
+<!-- Load JS with Thymeleaf resource resolution -->
+<script th:src="@{/javascript/Profile.js}" defer></script>
+<script th:src="@{/javascript/Admin.js}" defer></script>
 
-    </div>
-  </div>
-</div>
-
-    <script src="browse.js" defer></script>
-    <script src="search.js" defer></script>
 </body>
 </html>

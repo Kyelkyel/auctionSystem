@@ -24,41 +24,185 @@ header {
     color: white;
 }
 
-.navbar {
-    display: flex;      
-    width: 100%;    
-    height: 75px;              
-    align-items: center; 
-    justify-content: center;
-    padding: 0px 50px;
-    position: absolute;
-    z-index: 1;    
-    margin-left: 380px;
-}
-
-.nav-links {
-    display: flex;
-    flex-direction: row; 
-    list-style: none;
-    gap: 15px; 
-}
-
-.navbar a {
-    color: white;  
-    font-family: "Poppins", sans-serif;        
-    text-decoration: none;
-    font-weight: normal;
-}
-
-.navbar a:hover {
-    text-decoration: underline; 
+.stat:hover {
+  transform: scale(1.05);
+  background: #e0e0e0;
 }
 
 
-.Shopping-page{
-    display: flex;
-    min-height: 100vh;
-    background: rgb(13, 0, 38);
-    background-size: cover;
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 10px;
+  border-bottom: 1px solid #2c2f33;
 }
 
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.userinfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.userinfo strong {
+  color: white;
+  font-size: 14px;
+}
+.handle {
+  color: #8b949e;
+  font-size: 12px;
+}
+
+#menuBtn {
+  background: transparent;
+  color: white;
+  font-size: 24px;
+  border: none;
+  cursor: pointer;
+}
+
+.sidebar {
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 250px;
+  height: 100%;
+  background: rgb(195, 155, 213);
+  color: white;
+  padding: 20px;
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  z-index: 1001;
+  border-radius: 5px;
+}
+
+.sidebar.open {
+  transform: translateX(0);
+}
+
+.sidebar button {
+  background: transparent;
+  color: white;
+  font-size: 24px;
+  border: none;
+  cursor: pointer;
+  float: right;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 50px;
+}
+
+.sidebar li {
+  margin: 15px 0;
+}
+
+.sidebar a {
+  color: white;
+  text-decoration: none;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
+  z-index: 1000;
+}
+
+.overlay.show {
+  display: block;
+}
+
+
+.admin-main {
+      padding: 30px;
+      background: rgb(13, 0, 38);
+    }
+    .admin-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+    .dashboard {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+    }
+    .dashboard h2 {
+      margin-bottom: 15px;
+    }
+    .dashboard-stats {
+      display: flex;
+      gap: 20px;
+    }
+    .stat {
+      flex: 1;
+      background: #eee;
+      padding: 15px;
+      border-radius: 8px;
+      text-align: center;
+    }
+    .manage-auctions, .pending-auctions{
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+    table, th, td {
+      border: 1px solid #ccc;
+    }
+    th, td {
+      padding: 10px;
+      text-align: center;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    input, select {
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      padding: 10px 15px;
+      border: none;
+      background: #333;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #555;
+    }
+
+.item-image {
+  width: 120px;
+  height: auto;
+  border-radius: 8px;
+}
+
+.seller-image{
+  width: 120px;
+  height: auto;
+  border-radius: 8px;
+}
