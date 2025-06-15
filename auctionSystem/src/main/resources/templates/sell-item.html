@@ -59,16 +59,23 @@
         <input type="number" id="startingBid" th:field="*{startingBid}" step="0.01" min="0" required>
       </div>
 
-      <div class="form-group">
+     <div class="form-group">
         <label>Seller Info</label>
         <!-- Added th:field to all seller info fields -->
+        <input type="text" name="sellerInfoName" th:value="${session.username}" placeholder="Name or Username" required readonly style="background-color: #e0e0e0; color: #555;">
+        <input type="email" name="sellerInfoEmail" th:value="${session.email}" placeholder="Email" required readonly style="background-color: #e0e0e0; color: #555;">
+        <input type="tel" name="sellerInfoPhone" th:value="${session.contactNo}" placeholder="Phone Number" required readonly style="background-color: #e0e0e0; color: #555;">
+        <input type="text" name="sellerInfoLocation" th:value="${session.address}" placeholder="Location" required readonly style="background-color: #e0e0e0; color: #555;">
+        
+<!--         
         <input type="text" th:field="*{sellerInfoName}" placeholder="Name or Username" required>
         <input type="email" th:field="*{sellerInfoEmail}" placeholder="Email" required>
         <input type="tel" th:field="*{sellerInfoPhone}" placeholder="Phone Number" required>
-        <input type="text" th:field="*{sellerInfoLocation}" placeholder="Location" required>
+        <input type="text" th:field="*{sellerInfoLocation}" placeholder="Location" required> -->
       </div>
 
       <button type="submit">Submit Listing</button>
+      <a th:href="@{/user}" class="btn-cancel">Cancel</a>
     </form>
   </div>
  </main>

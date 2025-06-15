@@ -12,6 +12,14 @@
 </head>
  
 <body>
+    <div th:if="${session.username != null}">
+        <script th:inline="javascript">
+            /*<![CDATA[*/
+            window.location.href = /*[[@{/user}]]*/ '/user';
+            /*]]>*/
+        </script>
+    </div>
+
     <header> 
     <nav class="navbar">
     <section id="home">

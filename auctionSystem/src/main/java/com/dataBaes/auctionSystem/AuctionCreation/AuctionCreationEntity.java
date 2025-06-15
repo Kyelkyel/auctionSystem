@@ -1,8 +1,8 @@
 package com.dataBaes.auctionSystem.AuctionCreation;
+
 import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-
 @Entity
 @Table(name = "auction_items")
 public class AuctionCreationEntity {
@@ -11,6 +11,9 @@ public class AuctionCreationEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "auctionItem_ID")
     private Integer auctionItemID;
+
+    @Column(name = "userID", nullable = false, unique = true)
+    private Integer userID;
 
     @Column(name = "item_image", length = 255)
     private String itemImage;
@@ -48,6 +51,9 @@ public class AuctionCreationEntity {
     @Column(name = "created_at", insertable = false, updatable = false)
     private LocalDateTime createdAt;
 
+    @Column(name = "isVerified", nullable = false)
+    private Boolean isVerified;
+
     // No-arg constructor
     public AuctionCreationEntity() {}
 
@@ -59,6 +65,14 @@ public class AuctionCreationEntity {
 
     public void setAuctionItemID(Integer auctionItemID) {
         this.auctionItemID = auctionItemID;
+    }
+
+    public Integer getUserID() {
+        return userID;
+    }
+
+    public void setUserID(Integer userID) {
+        this.userID = userID;
     }
 
     public String getItemImage() {
@@ -154,4 +168,12 @@ public class AuctionCreationEntity {
     }
 
     // no setter for createdAt since it's DB-generated
+
+    public Boolean getIsVerified() {
+        return isVerified;
+    }
+
+    public void setIsVerified(Boolean isVerified) {
+        this.isVerified = isVerified;
+    }
 }

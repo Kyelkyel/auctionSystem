@@ -12,6 +12,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet"> 
 </head>
 <body>
+
+  <div th:if="${session.username == null}">
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        window.location.href = /*[[@{/}]]*/ '/';
+        /*]]>*/
+    </script>
+  </div>
+  
   <header> 
     <nav class="navbar">
      <section id="home">
@@ -41,7 +50,7 @@
     
     <ul>
       <li><a href="yourProfile.html">Your profile</a></li>
-      <li><a href="sell-item.html">Sell Items</a></li>
+      <li><a th:href="@{/auctionCreation}">Sell Items</a></li>
       <li><a href="Auctioneer.html">Auctions</a></li>
       <li><a href="#">Settings</a></li>
       <li><a th:href="@{/sign-out}">Sign out</a></li>

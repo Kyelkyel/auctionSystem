@@ -164,4 +164,10 @@ public class sqlMethods {
 
 	}
 	
+	public String absolutePathUserUpload()
+	{
+		return "D:/Programming Files/Java/auctionSystemWeb/auctionSystem/userUploads";
+		
+	}
+	
 }

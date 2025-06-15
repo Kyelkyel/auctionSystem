@@ -1,3 +1,5 @@
+DROP SCHEMA IF EXISTS auction_system;
+
 CREATE DATABASE IF NOT EXISTS auction_system;
 USE auction_system;
 
@@ -38,6 +40,7 @@ PRIMARY KEY (verificationID)
 );
 
 CREATE TABLE auction_items (
+	userID INT NOT NULL,
     auctionItem_ID INT AUTO_INCREMENT PRIMARY KEY,
     item_image VARCHAR(255),            -- store image filename or path
     item_title VARCHAR(255) NOT NULL,
@@ -50,7 +53,10 @@ CREATE TABLE auction_items (
     seller_info_email VARCHAR(255) NOT NULL,
     seller_info_phone VARCHAR(50) NOT NULL,
     seller_info_location VARCHAR(255) NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	isVerified BOOLEAN NOT NULL,
+    
+    FOREIGN KEY (userID) references Users(userID)
 );
 
 
@@ -110,3 +116,18 @@ PRIMARY KEY (bidHistoryID),
 FOREIGN KEY (auctionID) REFERENCES Auction(auctionID),
 FOREIGN KEY (bidID) REFERENCES Bids(bidID)
 );
+
+-- Create sample user forda testing
+INSERT INTO Users (
+  username, password, email, userStatus, if_admin, address, contactNo, name, schoolName, studentID, age, sex, profile_location
+) VALUES (
+  'Jensen', '1234', 'jensen@gmail.com', 'OFFLINE', true, '123 Main St', '0913245692', 'Jensen Santillan', 'NU Manila', '2023-1492', 24, 'Female', "userImages/550e8400-e29b-41d4-a716-446655440000.jpg"
+);
+
+INSERT INTO Users (
+  username, password, email, userStatus, if_admin, address, contactNo, name, schoolName, studentID, age, sex, profile_location
+) VALUES (
+  'Matthew', '1234', 'matthew@gmail.com', 'OFFLINE', false, '123 Main St', '0913256713', 'Matthew Dwayne', 'NU Manila', '2022-1313', 20, 'Male', "/userImages/523e6500-e13b-45r3-b346-563412340123.jpg"
+);
+
+SELECT * FROM Users;

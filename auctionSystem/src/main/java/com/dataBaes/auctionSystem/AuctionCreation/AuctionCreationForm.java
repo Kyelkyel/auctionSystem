@@ -1,8 +1,8 @@
 package com.dataBaes.auctionSystem.AuctionCreation;
-import org.springframework.web.multipart.MultipartFile;
-
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+
+import org.springframework.web.multipart.MultipartFile;
 
 public class AuctionCreationForm {
 
@@ -17,6 +17,12 @@ public class AuctionCreationForm {
     private String sellerInfoEmail;
     private String sellerInfoPhone;
     private String sellerInfoLocation;
+
+    // Added fields to match MySQL table
+    private Integer userID;
+    private Integer auctionItem_ID;
+    private LocalDateTime createdAt;
+    private Boolean isVerified;
 
     // Getters and Setters
 
@@ -106,5 +112,37 @@ public class AuctionCreationForm {
 
     public void setSellerInfoLocation(String sellerInfoLocation) {
         this.sellerInfoLocation = sellerInfoLocation;
+    }
+
+    public Integer getUserID() {
+        return userID;
+    }
+
+    public void setUserID(Integer userID) {
+        this.userID = userID;
+    }
+
+    public Integer getAuctionItem_ID() {
+        return auctionItem_ID;
+    }
+
+    public void setAuctionItem_ID(Integer auctionItem_ID) {
+        this.auctionItem_ID = auctionItem_ID;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Boolean getIsVerified() {
+        return isVerified;
+    }
+
+    public void setIsVerified(Boolean isVerified) {
+        this.isVerified = isVerified;
     }
 }

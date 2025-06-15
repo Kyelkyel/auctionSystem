@@ -246,3 +246,30 @@ button[type="submit"]:hover {
   outline: none;
   box-shadow: 0 0 5px rgba(0,123,255,0.3);
 }
+
+
+a.btn-cancel {
+  display: block;               /* full width block */
+  background-color: gray;
+  color: white;
+  padding: 0.75rem;
+  width: 80%;
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 15px;
+  text-decoration: none;       /* remove underline */
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  line-height: 1.5;            /* vertically center text */
+  user-select: none;           /* optional: prevent text selection */
+  font-family: "Poppins", sans-serif; /* explicitly set font */
+}
+
+a.btn-cancel:hover,
+a.btn-cancel:focus {
+  background-color: lightgray;
+  outline: none;               /* remove default focus outline */
+  text-decoration: none;
+}

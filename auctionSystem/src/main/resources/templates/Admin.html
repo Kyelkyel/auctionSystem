@@ -11,6 +11,15 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"/>
 </head>
 <body>
+  <div th:if="${session.if_admin == false}">
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        window.location.href = /*[[@{/user}]]*/ '/user';
+        /*]]>*/
+    </script>
+  </div>
+
+
 
 <header>
     <div class="logo">KoolBulls Admin</div>
@@ -99,39 +108,40 @@
 
     <!-- Pending Items from Users -->
     <section class="pending-auctions" id="pending-items">
-      <h2>Pending Items for Approval</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Image</th>
-            <th>Title</th>
-            <th>Description</th>
-            <th>Seller</th>
-            <th>Seller ID</th>
-            <th>Date Submitted</th>
-            <th>Time</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody id="pending-list">
-          <tr>
-            <!-- Resolve image src with Thymeleaf -->
-            <td><img th:src="@{/images/macbook.jpg}" class="item-image" alt="Item Image"/></td>
-            <td>Apple MacBook Air</td>
-            <td>2020 Model, 13-inch, like new</td>
-            <td>john@example.com</td>
-            <td><img th:src="@{/images/macbook.jpg}" class="seller-image" alt="Seller Image"/></td>
-            <td>June 9, 2025</td>
-            <td>12:00 PM</td>
-            <td>
-              <button onclick="approveItem(this)">Approve</button>
-              <button onclick="rejectItem(this)">Reject</button>
-            </td>
-          </tr>
-          <!-- More rows dynamically generated -->
-        </tbody>
-      </table>
-    </section>
+  <h2>Pending Items for Approval</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Image</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Seller</th>
+        <th>Seller ID</th>
+        <th>Date Submitted</th>
+        <th>Time</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody id="pending-list">
+      <tr th:each="auctionCreationEntityVar : ${auctionCreationEntityList}">
+        <td>
+          <img th:src="${auctionCreationEntityVar.itemImage}" class="item-image" alt="Item Image" />
+        </td>
+        <td th:text="${auctionCreationEntityVar.itemTitle}">Title</td>
+        <td th:text="${auctionCreationEntityVar.itemDescription}">Description</td>
+        <td th:text="${auctionCreationEntityVar.sellerInfoEmail}">Seller</td>
+        <td th:text="${auctionCreationEntityVar.sellerInfoName}">Seller ID</td>
+        <td th:text="${#dates.format(auctionCreationEntityVar.startTime, 'MMMM d, yyyy')}">Date Submitted</td>
+        <td th:text="${#dates.format(auctionCreationEntityVar.startTime, 'h:mm a')}">Time</td>
+        <td>
+          <button type="button" onclick="approveItem(this)">Approve</button>
+          <button type="button" onclick="rejectItem(this)">Reject</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
 
     <!-- Winners -->
     <section class="manage-auctions" id="winners">
