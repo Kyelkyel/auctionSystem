@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/Forgotpass.css">
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet"> 
+  
+</head>
+<body>
+<header>
+    <nav class="navbar">
+     <section id="home">
+           <ul class="nav-links">
+            <li><a href="User.html">Home</a></li>
+            <li><a href="Admin.html">Auctions</a></li>
+            <li><a href="User.html">Contact</a></li>
+        </ul>
+     </section>
+    </nav>
+     
+      <div class="logo">KoolBulls</div>
+
+      
+    <button id="menuBtn">☰</button>
+      
+    <div id="sidebar" class="sidebar">
+    <button id="closeBtn">×</button>
+
+      <div class="profile">
+         <img src="../../images/pfptest.jpg" alt="Profile picture" class="avatar">
+        <div class="userinfo">
+         <strong>USER 01</strong>
+         <span class="handle">@user01</span>
+       </div>
+    </div>
+    
+    <ul>
+      <li><a href="yourProfile.html">Your profile</a></li>
+      <li><a href="sell-item.html">Sell Items</a></li>
+      <li><a href="Auctioneer.html">Auctions</a></li>
+      <li><a href="#">Settings</a></li>
+      <li><a href="#">Sign out</a></li>
+    </ul>
+
+  <div id="overlay" class="overlay"></div>
+
+ </header>
+       
+ 
+<div class="forgot-password-container">
+  <h2>Forgot Password</h2>
+  <form action="/reset-password" method="POST" class="forgot-form">
+    <label for="email">Enter your email address</label>
+    <input type="email" id="email" name="email" required />
+    <button type="submit">Send New Password</button>
+  </form>
+  <div class="back-link">
+    <a href="/login">Back to Login</a>
+  </div>
+</div>
+</body>
+</html>

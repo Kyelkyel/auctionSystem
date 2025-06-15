@@ -3,10 +3,20 @@ document.addEventListener("DOMContentLoaded", () => {
   const closeBidBtn = document.getElementById('close-bid-modal');
   const submitBtn = document.getElementById('submit-bid');
 
+  // Simulated logged-in user
+  const loggedInUser = {
+    name: "USER 01",
+    email: "user01@example.com",
+    phone: "09171234567",
+    location: "Manila, Philippines"
+  };
+
   if (modal && closeBidBtn && submitBtn) {
     document.querySelectorAll('.bid-button').forEach(button => {
       button.addEventListener('click', () => {
         modal.style.display = 'flex';
+        // Autofill username when opening modal
+        document.getElementById('bid-username').value = loggedInUser.name;
       });
     });
 
@@ -48,7 +58,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const table = document.getElementById('bids-table');
     if (!table) return;
 
-    // Clear previous highest bids
     for (let i = 1; i < table.rows.length; i++) {
       const row = table.rows[i];
       const statusCell = row.cells[3];

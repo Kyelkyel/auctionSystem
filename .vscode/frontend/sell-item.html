@@ -40,12 +40,14 @@
       </div>
     
     <ul>
-      <li><option href="yourProfile.html">Your profile</option></li>
-      <li><option href="sell-item.html">Sell Items</option></li>
-      <li><option href="#">Auction</option></li>
-      <li><option href="#">Settings</option></li>
-      <li><option href="#">Sign out</option></li>
+      
+      <li><a href="yourProfile.html">Your profile</a></li>
+      <li><a href="sell-item.html">Sell Items</a></li>
+      <li><a href="Auctioneer.html">Auctions</a></li>
+      <li><a href="Settings.html">Settings</a></li>
+      <li><a href="#">Sign out</a></li>
     </ul>
+    
    </div>
 
    <div id="overlay" class="overlay"></div>
@@ -104,19 +106,19 @@
       </div>
 
       <div class="form-group">
-        <label for="sellerInfo">Seller Info</label>
-        <input type="text" id="sellerInfo" placeholder="Name or Username" required>
-        <input type="text" id="sellerInfo" placeholder="Email" required>
-        <input type="number" id="sellerInfo" placeholder="Phone Number" required>
-        <input type="text" id="sellerInfo" placeholder="Location" required>
-      </div>
-
+        <label>Seller Info</label>
+        <input type="text" id="sellerName" placeholder="Name or Username" readonly>
+        <input type="email" id="sellerEmail" placeholder="Email" readonly>
+        <input type="text" id="sellerPhone" placeholder="Phone Number" readonly>
+        <input type="text" id="sellerLocation" placeholder="Location" readonly>
+     </div>
 
       <button type="submit">Submit Listing</button>
     </form>
   </div>
  </main>
 
+  <script src="sell-items.js"></script>
   <script src="Profile.js"></script>
 </body>
 </html>

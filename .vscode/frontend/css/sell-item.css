@@ -246,3 +246,8 @@ button[type="submit"]:hover {
   outline: none;
   box-shadow: 0 0 5px rgba(0,123,255,0.3);
 }
+
+input[readonly] {
+  background-color: #f0f0f0;
+  cursor: not-allowed;
+}
