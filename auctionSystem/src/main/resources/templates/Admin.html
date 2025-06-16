@@ -40,7 +40,7 @@
       <ul>
         <!-- Use th:href for internal links, adjust paths as needed -->
         <li><a th:href="@{/yourProfile}">Your profile</a></li>
-        <li><a th:href="@{/sell-item}">Sell Items</a></li>
+        <li><a th:href="@{/auctionCreation}">Sell Items</a></li>
         <li><a th:href="@{/auctions}">Auctions</a></li>
         <li><a th:href="@{/settings}">Settings</a></li>
         <li><a th:href="@{/signout}">Sign out</a></li>
@@ -71,40 +71,41 @@
       </div>
     </section>
 
-    <!-- Manage Auctions -->
-    <section class="manage-auctions" id="auction">
-      <h2>Manage Auctions</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Price</th>
-            <th>Status</th>
-            <th>Date Submitted</th>
-            <th>Time</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody id="auction-list">
-          <tr>
-            <td>Apple MacBook Air</td>
-            <td>₱6,269</td>
-            <td>Upcoming</td>
-            <td>June 9, 2025</td>
-            <td>12:00 PM</td>
-            <td><button onclick="deleteAuction(this)">Delete</button></td>
-          </tr>
-          <tr>
-            <td>Canon EOS Camera</td>
-            <td>₱11,519</td>
-            <td>Ongoing</td>
-            <td>June 9, 2025</td>
-            <td>12:00 PM</td>
-            <td><button onclick="deleteAuction(this)">Delete</button></td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
+  <!-- Manage Auctions -->
+  <section class="manage-auctions" id="auction">
+    <h2>Manage Auctions</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Price</th>
+          <th>Status</th>
+          <th>Date Submitted</th>
+          <th>Time</th>
+          <th>Auctioneer</th>
+          <th>Email</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="auction-list">
+        <tr th:each="auctionCreationEntityVar : ${auctionList}">
+          <td th:text="${auctionCreationEntityVar.auctionItem.itemTitle}">Apple MacBook Air</td>
+          <td th:text="${#numbers.formatDecimal(auctionCreationEntityVar.currentPrice, 0, 0)}">₱6,269</td>
+
+          <td th:text="${auctionCreationEntityVar.auctionStatus}">Upcoming</td>
+          <td th:text="${#temporals.format(auctionCreationEntityVar.auctionItem.startTime, 'MMMM d, yyyy')}">June 9, 2025</td>
+          <td th:text="${#temporals.format(auctionCreationEntityVar.auctionItem.startTime, 'h:mm a')}">12:00 PM</td>
+          <td th:text="${auctionCreationEntityVar.auctionItem.sellerInfoName}">AuctioneerUsername</td>
+          <td th:text="${auctionCreationEntityVar.auctionItem.sellerInfoEmail}">auctioneer@example.com</td>
+          <td>
+            <form th:action="@{'/deleteAuctionItem/' + ${auctionCreationEntityVar.auctionItem.auctionItemID}}" method="post" style="display:inline">
+              <button type="submit">Delete</button>
+            </form>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
 
     <!-- Pending Items from Users -->
     <section class="pending-auctions" id="pending-items">
@@ -138,7 +139,11 @@
             <button type="submit">Approve</button>
           </form>
 
-          <button type="button" onclick="rejectItem(this)">Reject</button>
+          <form th:action="@{'/rejectAuctionItem/' + ${auctionCreationEntityVar.auctionItemID}}" method="post" style="display:inline">
+            <button type="submit">Reject</button>
+          </form>
+
+          <!-- <button type="button" onclick="rejectItem(this)">Reject</button> -->
         </td>
       </tr>
     </tbody>

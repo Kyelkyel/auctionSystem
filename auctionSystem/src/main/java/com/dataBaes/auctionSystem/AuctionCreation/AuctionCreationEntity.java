@@ -17,7 +17,7 @@ public class AuctionCreationEntity {
 
     @Column(name = "item_image", length = 255)
     private String itemImage;
-
+    
     @Column(name = "item_title", nullable = false, length = 255)
     private String itemTitle;
 
@@ -33,7 +33,7 @@ public class AuctionCreationEntity {
     @Column(name = "end_time", nullable = false)
     private LocalDateTime endTime;
 
-    @Column(name = "starting_bid", nullable = false, precision = 10, scale = 2)
+    @Column(name = "starting_bid", nullable = false, precision = 32, scale = 2)
     private BigDecimal startingBid;
 
     @Column(name = "seller_info_name", nullable = false, length = 255)

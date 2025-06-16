@@ -23,21 +23,43 @@ PRIMARY KEY (userID)
 
 );
 
-/* Auctioneer Side */
-CREATE TABLE IF NOT EXISTS Auctioneer (
-auctioneerID INT NOT NULL AUTO_INCREMENT UNIQUE,
-userID INT,
+-- /* Auctioneer Side */
+-- CREATE TABLE IF NOT EXISTS Auctioneer (
+-- auctioneerID INT NOT NULL AUTO_INCREMENT UNIQUE,
+-- userID INT,
 
-PRIMARY KEY (auctioneerID),
+-- PRIMARY KEY (auctioneerID),
+-- FOREIGN KEY (userID) REFERENCES Users(userID)
+-- );
+
+-- CREATE TABLE IF NOT EXISTS Product_Verification(
+-- verificationID INT NOT NULL AUTO_INCREMENT UNIQUE,
+-- ifProductVerified BOOLEAN,
+
+-- PRIMARY KEY (verificationID)
+-- );
+
+
+/* Bidder Side */
+-- CREATE TABLE IF NOT EXISTS Bidder(
+-- userID INT NOT NULL,
+-- bidderID INT NOT NULL AUTO_INCREMENT UNIQUE,
+
+-- FOREIGN KEY (userID) references Users(userID)
+-- );
+
+CREATE TABLE IF NOT EXISTS Bids(
+bidID INT NOT NULL AUTO_INCREMENT UNIQUE,
+userID INT NOT NULL,
+bidAmount INT NOT NULL,
+bidderPlace INT NOT NULL,
+bidDate DATE,
+bidTime DATE,
+
+PRIMARY KEY (bidID),
 FOREIGN KEY (userID) REFERENCES Users(userID)
 );
 
-CREATE TABLE IF NOT EXISTS Product_Verification(
-verificationID INT NOT NULL AUTO_INCREMENT UNIQUE,
-ifProductVerified BOOLEAN,
-
-PRIMARY KEY (verificationID)
-);
 
 CREATE TABLE auction_items (
 	userID INT NOT NULL,
@@ -59,45 +81,17 @@ CREATE TABLE auction_items (
     FOREIGN KEY (userID) references Users(userID)
 );
 
+CREATE TABLE IF NOT EXISTS Auction (
+  auctionID INT NOT NULL AUTO_INCREMENT UNIQUE,
+  auctionItem_ID INT NOT NULL,
+  auctionStatus ENUM('Ongoing', 'Inactive', 'Ended'),
+  soldAt INT NOT NULL,
+  current_price DOUBLE NOT NULL DEFAULT 0,
 
-
-/* Bidder Side */
-CREATE TABLE IF NOT EXISTS Bidder(
-userID INT NOT NULL,
-bidderID INT NOT NULL AUTO_INCREMENT UNIQUE,
-
-FOREIGN KEY (userID) references Users(userID)
+  PRIMARY KEY (auctionID),
+  FOREIGN KEY (auctionItem_ID) REFERENCES auction_item(auctionItem_ID)
 );
 
-CREATE TABLE IF NOT EXISTS Bids(
-bidID INT NOT NULL AUTO_INCREMENT UNIQUE,
-bidderID INT NOT NULL,
-bidAmount INT NOT NULL,
-bidderPlace INT NOT NULL,
-bidDate DATE,
-bidTime DATE,
-
-PRIMARY KEY (bidID),
-FOREIGN KEY (bidderID) REFERENCES Bidder(bidderID)
-);
-
-CREATE TABLE IF NOT EXISTS Auction(
-auctionID INT NOT NULL AUTO_INCREMENT UNIQUE,
-verificationID INT NOT NULL,
-auctioneerID INT NOT NULL,
-auctionStartDate DATE NOT NULL,
-auctionEndDate DATE NOT NULL,
-auctionStatus ENUM("Ongoing", "Inactive", "Ended"),
-consigneeName VARCHAR(50),
-soldAt INT NOT NULL,
-product_img VARCHAR(50),
-initialBidPrice INT NOT NULL,
-category ENUM("Clothes", "Accessories") NOT NULL,
-
-PRIMARY KEY (auctionID),
-FOREIGN KEY (verificationID) REFERENCES Product_Verification(verificationID),
-FOREIGN KEY (auctioneerID) references Auctioneer(auctioneerID)
-);
 
 CREATE TABLE IF NOT EXISTS Auctioneer_History(
 auctioneerHistoryID INT NOT NULL AUTO_INCREMENT UNIQUE,
@@ -127,7 +121,8 @@ INSERT INTO Users (
 INSERT INTO Users (
   username, password, email, userStatus, if_admin, address, contactNo, name, schoolName, studentID, age, sex, profile_location
 ) VALUES (
-  'Matthew', '1234', 'matthew@gmail.com', 'OFFLINE', false, '123 Main St', '0913256713', 'Matthew Dwayne', 'NU Manila', '2022-1313', 20, 'Male', "/userImages/523e6500-e13b-45r3-b346-563412340123.jpg"
+  'Matthew', '1234', 'matthew@gmail.com', 'OFFLINE', false, '123 Main St', '0913256713', 'Matthew Dwayne', 'NU Manila', '2022-1313', 20, 'Male', "userImages/523e6500-e13b-45r3-b346-563412340123.jpg"
 );
 
 SELECT * FROM Users;
+SELECT * FROM Auction;
