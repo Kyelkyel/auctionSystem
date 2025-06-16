@@ -19,6 +19,7 @@ spring:
         - classpath:/public/
         - classpath:/resources/
         - classpath:/META-INF/resources/
-        - file:D:/Programming Files/Java/auctionSystemWeb/auctionSystem/userUploads
+        - file:E:/Programming_Files/Java Spring Boot/auctionSystemWeb/auctionSystem/userUploads
+
 server:
   port: 8080

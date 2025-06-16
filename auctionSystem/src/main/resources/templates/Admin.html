@@ -123,18 +123,21 @@
       </tr>
     </thead>
     <tbody id="pending-list">
-      <tr th:each="auctionCreationEntityVar : ${auctionCreationEntityList}">
+      <tr th:each="auctionCreationEntityVar : ${auctionCreationEntityList}" th:if="${auctionCreationEntityVar.isVerified == false}">
         <td>
           <img th:src="${auctionCreationEntityVar.itemImage}" class="item-image" alt="Item Image" />
         </td>
         <td th:text="${auctionCreationEntityVar.itemTitle}">Title</td>
         <td th:text="${auctionCreationEntityVar.itemDescription}">Description</td>
         <td th:text="${auctionCreationEntityVar.sellerInfoEmail}">Seller</td>
-        <td th:text="${auctionCreationEntityVar.sellerInfoName}">Seller ID</td>
-        <td th:text="${#dates.format(auctionCreationEntityVar.startTime, 'MMMM d, yyyy')}">Date Submitted</td>
-        <td th:text="${#dates.format(auctionCreationEntityVar.startTime, 'h:mm a')}">Time</td>
+        <td th:text="${auctionCreationEntityVar.userID}">Seller ID</td>
+        <td th:text="${#temporals.format(auctionCreationEntityVar.startTime, 'MMMM d, yyyy')}">Date Submitted</td>
+        <td th:text="${#temporals.format(auctionCreationEntityVar.startTime, 'h:mm a')}">Time</td>
         <td>
-          <button type="button" onclick="approveItem(this)">Approve</button>
+          <form th:action="@{'/approveAuctionItem/' + ${auctionCreationEntityVar.auctionItemID}}" method="post" style="display:inline">
+            <button type="submit">Approve</button>
+          </form>
+
           <button type="button" onclick="rejectItem(this)">Reject</button>
         </td>
       </tr>
