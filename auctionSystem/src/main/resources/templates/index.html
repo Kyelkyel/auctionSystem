@@ -80,45 +80,30 @@
   </div>
 
   <div class="grid-container">
-    <!-- Card 1 - Merged content -->
-    <div class="auction-card" data-category="electronics">
-      <img src="images/macbook.jpg" alt="Product 1"> <!-- Restored old path -->
-      <div class="auction-title">Apple MacBook Air 13"</div>
-      <div class="auction-time">Starts in 2h 20m</div>
-      <div class="auction-price">₱6,269</div> <!-- New currency -->
-      <div class="auction-time">user0001</div> <!-- New element -->
-      <button class="bid-button">PLACE BID</button> <!-- New button text -->
-      <div class="buy-now">Buy it now for ₱6,269</div>
-    </div>
-    
-    <!-- Card 2 - Merged content -->
-    <div class="auction-card" data-category="electronics">
-      <img src="images/canon.jpg" alt="Product 2"> <!-- New image path -->
-      <div class="auction-title">Canon EOS Camera</div>
-      <div class="auction-time">Ends in 00:01:20</div>
-      <div class="auction-price">₱11,519</div>
-      <button class="bid-button">PLACE BID</button>
-      <div class="buy-now">Buy it now for ₱11,519</div>
-    </div>
-    
-    <!-- Remaining cards follow same pattern -->
-    <!-- ... (other auction cards with merged attributes) ... -->
-    
+  <div class="auction-card" th:each="item : ${auctionItems}" th:attr="data-category=${item.category}">
+    <img th:src="@{${item.imagePath}}" th:alt="${item.title}" />
+    <div class="auction-title" th:text="${item.title}"></div>
+    <div class="auction-time" th:text="${item.timeStatus}"></div>
+    <div class="auction-price" th:text="'₱' + ${item.price}"></div>
+    <div class="auction-time" th:if="${item.username != null}" th:text="${item.username}"></div>
+    <button class="bid-button" th:text="${item.bidButtonText}">PLACE BID</button>
+    <div class="buy-now" th:text="'Buy it now for ₱' + ${item.price}"></div>
   </div>
- 
-    <div id="noResultsMessage"> No results found.</div>
+</div>
 
-     <div class="pagination-container">
-       <div class="pagination">
-         <!-- Enhanced pagination from new version -->
-         <button id="prev-page">Previous</button>
-         <button class="page-btn active" data-page="1">1</button>
-         <button class="page-btn" data-page="2">2</button>
-         <button class="page-btn" data-page="3">3</button>
-         <button class="page-btn" data-page="4">4</button>
-         <button id="next-page">Next</button>
-        </div>
-     </div> 
+<div id="noResultsMessage" th:if="${#lists.isEmpty(auctionItems)}">No results found.</div>
+
+<div class="pagination-container">
+  <div class="pagination">
+    <button id="prev-page">Previous</button>
+    <button class="page-btn active" data-page="1">1</button>
+    <button class="page-btn" data-page="2">2</button>
+    <button class="page-btn" data-page="3">3</button>
+    <button class="page-btn" data-page="4">4</button>
+    <button id="next-page">Next</button>
+  </div>
+</div>
+ 
 </main>
    
   <footer>

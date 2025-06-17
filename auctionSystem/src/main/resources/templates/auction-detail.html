@@ -1,61 +1,121 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/auction-detail.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet"> 
-  
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/auction-detail.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet" /> 
     <title>Document</title>
 </head>
 
+<body>
 <header> 
     <nav class="navbar">
+      <section id="home">
            <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="index.html">Auctions</a></li>
+            <li><a href="#home">Home</a></li>
+            <li><a href="Admin.html">Auctions</a></li>
+            <li><a href="User.html">Contact</a></li>
         </ul>
-    </nav>
-           <div class="logo">KoolBulls</div>
+      </section>
+     </nav>
+     
+      <div class="logo">KoolBulls</div>
+
+      
+    <button id="menuBtn">☰</button>
+      
+     <div id="sidebar" class="sidebar">
+      <button id="closeBtn">×</button>
+
+      <div class="profile">
+         <img src="../../images/pfptest.jpg" alt="Profile picture" class="avatar" />
+       <div class="userinfo">
+         <strong>USER 01</strong>
+         <span class="handle">@user01</span>
+       </div>
+     </div>
+    
+    <ul>
+      <li><a href="yourProfile.html">Your profile</a></li>
+      <li><a href="sell-item.html">Sell Items</a></li>
+      <li><a href="#">Bidding History</a></li>
+      <li><a href="#">Settings</a></li>
+      <li><a href="#">Sign out</a></li>
+    </ul>
+  
+
+   <div id="overlay" class="overlay"></div>
+  </div>
 </header>
 
-<body>
 <div class="Detail-page">
     <div class="auction-detail">
-  <div class="auction-header">
-    <img src="images/macbook.jpg" alt="Product Image" id="product-img">
+    <div class="auction-header">
+    <img src="../../images/macbook.jpg" alt="Product Image" id="product-img" />
     <div class="auction-info">
       <h2 id="product-title">Apple MacBook Air 13"</h2>
       <div class="timer" id="timer">Starts in 2h 20m</div>
       <div class="auction-price" id="price">$6,269</div>
-      <button class="bid-button">BID NOW</button>
+      <button class="bid-button">PLACE BID</button>
       <div class="buy-now">Buy it now for <span id="buy-price">$6,269</span></div>
     </div>
   </div>
-
   <div class="history">
-    <h3>Past Winners</h3>
-    <table>
-      <tr>
-        <th>User</th>
-        <th>Total Cost</th>
-        <th>Bids Placed</th>
-        <th>Final Bid</th>
-        <th>Date</th>
-      </tr>
-      <tr>
-        <td>Si ako</td>
-        <td>$3,087.91</td>
-        <td>13,450</td>
-        <td>$397.91</td>
-        <td>6/7/2025</td>
-      </tr>
-      <!-- Add more rows if needed -->
-    </table>
+  <h3>Bid History</h3>
+  <table>
+    <tr>
+      <th>User</th>
+      <th>Bid Amount</th>
+      <th>Bid Time</th>
+      <th>Status</th>
+    </tr>
+    <tr th:each="bid : ${bids}">
+      <td th:text="${bid.username}">BidBoss88</td>
+      <td th:text="${bid.amount}">$6,269</td>
+      <td th:text="${bid.time}">10:15 PM</td>
+      <td th:text="${bid.status}" 
+          th:style="${bid.status == 'Highest Bid'} ? 'color: green; font-weight: bold;' : ''">Highest Bid</td>
+    </tr>
+   </table>
+   </div>
+ <section>
+  <div class="product-extra">
+   <div class="description-section">
+    <h3>Description</h3>
+    <p>
+      The Apple MacBook Air 13" features the powerful Apple M1 chip, delivering fast performance and all-day battery life. Lightweight, sleek, and ideal for work or study.
+    </p>
+   </div>
+ </section>
+
+ <section>
+   <div class="seller-section">
+    <h3>Seller Information</h3>
+    <p><strong>Name:</strong> TechDepot123</p>
+    <p><strong>Email:</strong> techdepot@example.com</p>
+    <p><strong>Location:</strong> Manila, Philippines</p>
+   </div>
   </div>
- </div>
+ </section>
+
+  <div id="bid-modal" class="modal" style="display:none;">
+    <div class="modal-content">
+      <span id="close-bid-modal" class="close">&times;</span>
+      <h3>Place Your Bid</h3>
+      <input type="text" id="bid-username" placeholder="Username" readonly />
+      <input type="number" id="bid-amount" placeholder="Bid Amount" min="0.01" step="0.01" required />
+      <textarea id="bid-comments" placeholder="Comments (optional)"></textarea>
+      <button id="submit-bid">Submit Bid</button>
+    </div>
+  </div>
+
 </div>
+
+<script src="/javascript/Bid-Button.js"></script>
+<script src="/javascript/Profile.js" defer></script>
 </body>
 </html>
+
