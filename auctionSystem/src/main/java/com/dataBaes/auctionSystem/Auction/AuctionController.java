@@ -20,7 +20,6 @@ public class AuctionController {
     public String getAuctionItemPage(@PathVariable("id") Integer id, Model model) {
         // Fetch the auction item by id
         AuctionEntity auctionEntity = auctionRepository.getById(id);
-       
         model.addAttribute("auctionVar", auctionEntity);
         return "auction-detail"; // Thymeleaf template name
     }
