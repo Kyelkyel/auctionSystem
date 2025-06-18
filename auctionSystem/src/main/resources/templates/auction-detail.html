@@ -1,131 +1,146 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" th:href="@{/css/auction-detail.css}" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet" />
-    <title th:text="${auctionVar.auctionItem.itemTitle}">Auction Detail</title>
-</head>
-<body>
-<header> 
-    <nav class="navbar">
-      <section id="home">
-           <ul class="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="/admin">Auctions</a></li>
-            <li><a href="/contact">Contact</a></li>
-        </ul>
-      </section>
-     </nav>
-     
-      <div class="logo">KoolBulls</div>
-
-    <button id="menuBtn">☰</button>
+  <!DOCTYPE html>
+  <html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <link rel="stylesheet" th:href="@{/css/auction-detail.css}" />
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+      <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet" />
+      <title th:text="${auctionVar.auctionItem.itemTitle}">Auction Detail</title>
+  </head>
+  <body>
+  <header> 
+      <nav class="navbar">
+        <section id="home">
+            <ul class="nav-links">
+              <li><a href="#home">Home</a></li>
+              <li><a href="/admin">Auctions</a></li>
+              <li><a href="/contact">Contact</a></li>
+          </ul>
+        </section>
+      </nav>
       
-    <div id="sidebar" class="sidebar">
-      <button id="closeBtn">×</button>
+        <div class="logo">KoolBulls</div>
 
-      <div class="profile">
-         <img th:src="@{/images/pfptest.jpg}" alt="Profile picture" class="avatar" />
-       <div class="userinfo">
-         <strong>USER 01</strong>
-         <span class="handle">@user01</span>
-       </div>
-     </div>
-    
-    <ul>
-      <li><a href="/yourProfile">Your profile</a></li>
-      <li><a href="/sell-item">Sell Items</a></li>
-      <li><a href="/bidding-history">Bidding History</a></li>
-      <li><a href="/settings">Settings</a></li>
-      <li><a href="/logout">Sign out</a></li>
-    </ul>
-  
-   <div id="overlay" class="overlay"></div>
-  </div>
-</header>
+      <button id="menuBtn">☰</button>
+        
+      <div id="sidebar" class="sidebar">
+        <button id="closeBtn">×</button>
 
-<div class="Detail-page">
-  <div class="auction-detail">
-    <div class="auction-header">
-      <img th:src="@{${auctionVar.auctionItem.itemImage}}" alt="Product Image" id="product-img" />
-      <div class="auction-info">
-        <h2 id="product-title" th:text="${auctionVar.auctionItem.itemTitle}">Item Title</h2>
-        <div class="timer" id="timer" 
-             th:text="'Starts at: ' + ${#temporals.format(auctionVar.auctionItem.startTime, 'yyyy-MM-dd HH:mm')}">Start Time</div>
-        <div class="auction-price" id="price" th:text="${auctionVar.currentPrice}">Current Price</div>
-
-        <!-- Form for placing bid -->
-        <form id="bidForm" th:action="@{/createBidID/{userID}/{auctionID}(userID=${session.userID}, auctionID=${auctionVar.auctionItem.auctionItemID})}" method="post">
-          <input type="hidden" name="auctionID" th:value="${auctionVar.auctionItem.auctionItemID}" />
-          <input type="number" name="bidAmount" step="0.01" placeholder="Enter your bid" required />
-          <button type="submit" class="bid-button">PLACE BID</button>
-        </form>
-
-        <div class="buy-now">Buy it now for <span id="buy-price" th:text="${auctionVar.auctionItem.startingBid}">Starting Bid</span></div>
-        <div>
-          <strong>Status:</strong> <span id="auctionStatus" th:text="${auctionVar.auctionStatus}">Auction Status</span>
+        <div class="profile">
+          <img th:src="@{/images/pfptest.jpg}" alt="Profile picture" class="avatar" />
+        <div class="userinfo">
+          <strong>USER 01</strong>
+          <span class="handle">@user01</span>
         </div>
       </div>
-    </div>
-
-    <section class="history">
-      <h3>Bid History</h3>
-      <table>
-        <thead>
-          <tr>
-            <th>User</th>
-            <th>Bid Amount</th>
-            <th>Bid Time</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr th:each="bidsVar : ${bidsEntityList}">
-            <td th:text="${bidsVar.userID.username}">Bidder</td>
-            <td th:text="${bidsVar.bidAmount}">Bid Amount</td>
-            <td th:text="${#temporals.format(bidsVar.bidDateTime, 'hh:mm a')}">Bid Time</td>
-            <td th:text="${bidsVar.bidderPlace}" 
-                th:style="${bidsVar.bidderPlace == 'Highest Bid'} ? 'color: green; font-weight: bold;' : ''">Status</td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
-
-    <section class="product-extra">
-      <div class="description-section">
-        <h3>Description</h3>
-        <p th:text="${auctionVar.auctionItem.itemDescription}">
-          Item description goes here.
-        </p>
-      </div>
-    </section>
-
-    <section class="seller-section">
-
       
-      <h3>Seller Information</h3>
-      <p><strong>Name:</strong> <span th:text="${auctionVar.auctionItem.sellerInfoName}">Seller Name</span></p>
-      <p><strong>Email:</strong> <span th:text="${auctionVar.auctionItem.sellerInfoEmail}">Seller Email</span></p>
-      <p><strong>Phone:</strong> <span th:text="${auctionVar.auctionItem.sellerInfoPhone}">Seller Phone</span></p>
-      <p><strong>Location:</strong> <span th:text="${auctionVar.auctionItem.sellerInfoLocation}">Seller Location</span></p>
-    </section>
+      <ul>
+        <li><a href="/yourProfile">Your profile</a></li>
+        <li><a href="/sell-item">Sell Items</a></li>
+        <li><a href="/bidding-history">Bidding History</a></li>
+        <li><a href="/settings">Settings</a></li>
+        <li><a href="/logout">Sign out</a></li>
+      </ul>
+    
+    <div id="overlay" class="overlay"></div>
+    </div>
+  </header>
 
+  <div class="Detail-page">
+    <div class="auction-detail">
+      <div class="auction-header">
+        <img th:src="@{${auctionVar.auctionItem.itemImage}}" alt="Product Image" id="product-img" />
+        <div class="auction-info">
+          <h2 id="product-title" th:text="${auctionVar.auctionItem.itemTitle}">Item Title</h2>
+          <div class="timer" id="timer" 
+              th:text="'Starts at: ' + ${#temporals.format(auctionVar.auctionItem.startTime, 'yyyy-MM-dd HH:mm')}">Start Time</div>
+          <div class="auction-price" id="price" th:text="${auctionVar.currentPrice}">Current Price</div>
 
-<script>
-  document.getElementById('bidForm').addEventListener('submit', function(event) {
-    const auctionStatus = document.getElementById('auctionStatus').textContent.trim().toLowerCase();
-    if (auctionStatus !== 'active') {
-      event.preventDefault(); // Stop form submission
-      alert('You cannot place a bid because the auction is inactive.');
-    }
-  });
-</script>
+          <!-- Form for placing bid -->
+          <form id="bidForm" th:action="@{/createBidID/{userID}/{auctionID}(userID=${session.userID}, auctionID=${auctionVar.auctionItem.auctionItemID})}" method="post">
+            <input type="hidden" name="auctionID" th:value="${auctionVar.auctionItem.auctionItemID}" />
+            <input type="number" name="bidAmount" step="0.01" placeholder="Enter your bid" required />
+            <button type="submit" class="bid-button">PLACE BID</button>
+          </form>
 
-<script th:src="@{/javascript/Bid-Button.js}"></script>
-<script th:src="@{/javascript/Profile.js}" defer></script>
-</body>
-</html>
+          <div class="buy-now">Buy it now for <span id="buy-price" th:text="${auctionVar.auctionItem.startingBid}">Starting Bid</span></div>
+          <div>
+            <strong>Status:</strong> <span id="auctionStatus" th:text="${auctionVar.auctionStatus}">Auction Status</span>
+          </div>
+        </div>
+      </div>
+
+      <section class="history">
+        <h3>Bid History</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>User</th>
+              <th>Bid Amount</th>
+              <th>Bid Time</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="bidsVar : ${bidsEntityList}">
+              <td th:text="${bidsVar.userID.username}">Bidder</td>
+              <td th:text="${bidsVar.bidAmount}">Bid Amount</td>
+              <td th:text="${#temporals.format(bidsVar.bidDateTime, 'hh:mm a')}">Bid Time</td>
+              <td th:text="${bidsVar.bidderPlace}" 
+                  th:style="${bidsVar.bidderPlace == 'Highest Bid'} ? 'color: green; font-weight: bold;' : ''">Status</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="product-extra">
+        <div class="description-section">
+          <h3>Description</h3>
+          <p th:text="${auctionVar.auctionItem.itemDescription}">
+            Item description goes here.
+          </p>
+        </div>
+      </section>
+
+      <section class="seller-section">
+
+        
+        <h3>Seller Information</h3>
+        <p><strong>Name:</strong> <span th:text="${auctionVar.auctionItem.sellerInfoName}">Seller Name</span></p>
+        <p><strong>Email:</strong> <span th:text="${auctionVar.auctionItem.sellerInfoEmail}">Seller Email</span></p>
+        <p><strong>Phone:</strong> <span th:text="${auctionVar.auctionItem.sellerInfoPhone}">Seller Phone</span></p>
+        <p><strong>Location:</strong> <span th:text="${auctionVar.auctionItem.sellerInfoLocation}">Seller Location</span></p>
+      </section>
+
+  <script>
+    document.getElementById('bidForm').addEventListener('submit', function(event) {
+      // 1. Check auction status
+      const auctionStatus = document.getElementById('auctionStatus').textContent.trim().toLowerCase();
+      // if (auctionStatus !== 'Ongoing') {
+      //   event.preventDefault(); // Stop form submission
+      //   alert('You cannot place a bid because the auction is inactive.');
+      //   return; // Exit the function
+      // }
+
+      // 2. Get current price and user's bid
+      const currentPriceText = document.getElementById('price').textContent.trim();
+      // Assuming currentPriceText might contain currency symbols, we'll try to parse it safely.
+      // A more robust solution might involve sending the price value directly in a data attribute.
+      const currentPrice = parseFloat(currentPriceText.replace(/[^0-9.-]+/g,"")); // Remove non-numeric characters for parsing
+
+      const userBidInput = parseFloat(this.bidAmount.value);
+
+      // 3. Validate bid amount
+      if (userBidInput <= currentPrice) {
+        event.preventDefault(); // Stop form submission
+        alert('Your bid must be greater than the current price.');
+      }
+    });
+  </script>
+
+  <script th:src="@{/javascript/Bid-Button.js}"></script>
+  <script th:src="@{/javascript/Profile.js}" defer></script>
+  </body>
+  </html>

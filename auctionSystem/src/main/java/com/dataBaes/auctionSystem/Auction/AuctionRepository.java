@@ -18,5 +18,7 @@ public interface AuctionRepository extends JpaRepository<AuctionEntity, Integer>
 		       "AND a.auctionItem.endTime <= :now")
 		List<AuctionEntity> findAuctionsToEnd(@Param("now") LocalDateTime now);
 
+    @Query("SELECT a FROM AuctionEntity a WHERE a.auctionItem.userID = :userID")
+    List<AuctionEntity> findAllByUserID(@Param("userID") Integer userID);
     
 }

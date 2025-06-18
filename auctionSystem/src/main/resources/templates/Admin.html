@@ -73,6 +73,42 @@
 
   <!-- Manage Auctions -->
   <section class="manage-auctions" id="auction">
+    <h2>Manage Bids</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Price</th>
+          <th>Status</th>
+          <th>Date Submitted</th>
+          <th>Time</th>
+          <th>Auctioneer</th>
+          <th>Email</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="auction-list">
+        <tr th:each="auctionCreationEntityVar : ${auctionList}">
+          <td th:text="${auctionCreationEntityVar.auctionItem.itemTitle}">Apple MacBook Air</td>
+          <td th:text="${#numbers.formatDecimal(auctionCreationEntityVar.currentPrice, 0, 0)}">₱6,269</td>
+
+          <td th:text="${auctionCreationEntityVar.auctionStatus}">Upcoming</td>
+          <td th:text="${#temporals.format(auctionCreationEntityVar.auctionItem.startTime, 'MMMM d, yyyy')}">June 9, 2025</td>
+          <td th:text="${#temporals.format(auctionCreationEntityVar.auctionItem.startTime, 'h:mm a')}">12:00 PM</td>
+          <td th:text="${auctionCreationEntityVar.auctionItem.sellerInfoName}">AuctioneerUsername</td>
+          <td th:text="${auctionCreationEntityVar.auctionItem.sellerInfoEmail}">auctioneer@example.com</td>
+          <td>
+            <form th:action="@{'/deleteAuctionItem/' + ${auctionCreationEntityVar.auctionItem.auctionItemID}}" method="post" style="display:inline">
+              <button type="submit">Delete</button>
+            </form>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Manage Auctions -->
+  <section class="manage-auctions" id="auction">
     <h2>Manage Auctions</h2>
     <table>
       <thead>
@@ -108,47 +144,46 @@
   </section>
 
     <!-- Pending Items from Users -->
-    <section class="pending-auctions" id="pending-items">
-  <h2>Pending Items for Approval</h2>
+    <section class="manage-bidders" id="bidders">
+  <h2>Manage Bidders</h2>
+
+  <!-- Search form -->
+  <form th:action="@{/manageBidders}" method="get" style="margin-bottom: 1em;">
+    <input type="text" name="search" placeholder="Search by username or auction title" th:value="${search}" />
+    <button type="submit">Search</button>
+  </form>
+
   <table>
     <thead>
       <tr>
-        <th>Image</th>
-        <th>Title</th>
-        <th>Description</th>
-        <th>Seller</th>
-        <th>Seller ID</th>
-        <th>Date Submitted</th>
-        <th>Time</th>
-        <th>Action</th>
+        <th>Bidder Username</th>
+        <th>Auction Title</th>
+        <th>Bid Amount</th>
+        <th>Bid Date</th>
+        <th>Bidder Place</th>
+        <th>Actions</th>
       </tr>
     </thead>
-    <tbody id="pending-list">
-      <tr th:each="auctionCreationEntityVar : ${auctionCreationEntityList}" th:if="${auctionCreationEntityVar.isVerified == false}">
+    <tbody id="bidder-list">
+      <tr th:each="bid : ${bidList}">
+        <td th:text="${bid.userID.username}">bidderUsername</td>
+        <td th:text="${bid.auctionID.auctionItem.itemTitle}">Auction Item Title</td>
+        <td th:text="${#numbers.formatDecimal(bid.bidAmount, 0, 0)}">₱1000</td>
+        <td th:text="${#temporals.format(bid.bidDateTime, 'MMMM d, yyyy h:mm a')}">June 10, 2025 2:00 PM</td>
+        <td th:text="${bid.bidderPlace}">1</td>
         <td>
-          <img th:src="${auctionCreationEntityVar.itemImage}" class="item-image" alt="Item Image" />
-        </td>
-        <td th:text="${auctionCreationEntityVar.itemTitle}">Title</td>
-        <td th:text="${auctionCreationEntityVar.itemDescription}">Description</td>
-        <td th:text="${auctionCreationEntityVar.sellerInfoEmail}">Seller</td>
-        <td th:text="${auctionCreationEntityVar.userID}">Seller ID</td>
-        <td th:text="${#temporals.format(auctionCreationEntityVar.startTime, 'MMMM d, yyyy')}">Date Submitted</td>
-        <td th:text="${#temporals.format(auctionCreationEntityVar.startTime, 'h:mm a')}">Time</td>
-        <td>
-          <form th:action="@{'/approveAuctionItem/' + ${auctionCreationEntityVar.auctionItemID}}" method="post" style="display:inline">
-            <button type="submit">Approve</button>
+          <form th:action="@{'/deleteBid/' + ${bid.bidID}}" method="post" style="display:inline">
+            <button type="submit">Delete</button>
           </form>
-
-          <form th:action="@{'/rejectAuctionItem/' + ${auctionCreationEntityVar.auctionItemID}}" method="post" style="display:inline">
-            <button type="submit">Reject</button>
-          </form>
-
-          <!-- <button type="button" onclick="rejectItem(this)">Reject</button> -->
         </td>
+      </tr>
+      <tr th:if="${#lists.isEmpty(bidList)}">
+        <td colspan="6">No bidders found.</td>
       </tr>
     </tbody>
   </table>
 </section>
+
 
 
     <!-- Winners -->

@@ -59,6 +59,7 @@ public class AuctionCreationController {
            entity.setIsVerified(false);
            entity.setAuctionItemID(auctionCreationForm.getAuctionItem_ID());
            
+           
            // Handle file upload separately, save file and set image path
            String imagePath = saveFile(auctionCreationForm.getItemImage());
            System.out.println(imagePath);
@@ -66,6 +67,7 @@ public class AuctionCreationController {
 
            // Save entity to DB using your repository
            auctionCreationRepository.save(entity);
+           
            
     	return "redirect:/";
     }

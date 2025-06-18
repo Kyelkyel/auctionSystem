@@ -16,7 +16,7 @@ name VARCHAR(50),
 schoolName VARCHAR(50),
 studentID VARCHAR(50),
 age INT,
-sex ENUM("Male", "Female", "Prefer Not To Say") NOT NULL,
+sex ENUM('Male', 'Female', 'Prefer_Not_To_Say') NOT NULL,
 profile_location VARCHAR(255),
 
 PRIMARY KEY (userID)

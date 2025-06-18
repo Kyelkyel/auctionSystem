@@ -30,16 +30,25 @@
         <label for="itemDescription">Description</label>
         <input id="itemDescription" th:field="*{itemDescription}" rows="4" placeholder="Describe your item..." required></input>
        </div>
-
-    <div class="itemCategory">
-        <label for="itemCategory">Categories</label>
+            
+      <div class="itemCategory">
+          <label for="itemCategory">Categories</label>
           <!-- Added th:field -->
           <select id="itemCategory" th:field="*{itemCategory}" required>
-            <option value="" disabled selected>Select option category </option>
-            <option value="bidpacks">Bid Packs</option>
-            <!-- ... other options ... -->
-         </select>
-    </div>
+              <option value="" disabled selected>Select option category</option>
+              <option value="all">All</option>
+              <option value="new">New Items</option>
+              <option value="bidpacks">Bid Packs</option>
+              <option value="electronics">Electronics & Computers</option>
+              <option value="fashion">Fashion, Health & Beauty</option>
+              <option value="giftcards">Gift Cards</option>
+              <option value="hobbies">Hobbies, Toys, Outdoors & Games</option>
+              <option value="home">Home, Garden & Tools</option>
+              <option value="kitchen">Kitchen & Dining</option>
+              <option value="motors">Motors (Cars, Boats, etc.)</option>
+          </select>
+      </div>
+
 
     <div class="itemCategory">
       <label for="startTime">Start Time</label>

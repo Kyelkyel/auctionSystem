@@ -12,7 +12,7 @@ public class AuctionEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "auctionID")
     private Integer auctionID;
-
+    
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "auctionItem_ID", nullable = false, unique = true)
     private AuctionCreationEntity auctionItem;

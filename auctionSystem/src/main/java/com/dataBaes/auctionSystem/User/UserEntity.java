@@ -171,7 +171,8 @@ public class UserEntity {
 
     public void setProfile_location(String profile_location) {
         this.profile_location = profile_location;
-    }
+    } 
+    
 
     // Optional: equals, hashCode, toString methods
 }

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Sign Up</title>
     <link rel="stylesheet" th:href="@{/css/signup.css}" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
 </head>
 <body>
     
@@ -37,10 +38,34 @@
                     <input type="password" placeholder="Re-enter Password" th:field="*{confirmPassword}" required /><br />
                 </div>
 
+                <!-- Added fields from your plain HTML -->
+
+                <div class="input-box">
+                    <input type="text" placeholder="Address" th:field="*{address}" required /><br />
+                </div>
+
+                <div class="input-box">
+                    <input type="tel" placeholder="Contact Number" th:field="*{contactNo}" pattern="09\d{9}" required /><br />
+                </div>
+
+                <div class="input-box">
+                    <input type="text" placeholder="School Name" th:field="*{schoolName}" required /><br />
+                </div>
+
+                <div class="input-box">
+                    <input type="text" placeholder="Student ID" th:field="*{studentID}" required /><br />
+                </div>
+
+                <div class="input-box">
+                    <input type="number" placeholder="Age" th:field="*{age}" required /><br />
+                </div>
+
+                <div class="input-box">
+                    <input type="text" placeholder="Sex (e.g. Male/Female)" th:field="*{sex}" required /><br />
+                </div>
+
                 <button type="submit" class="btn">Sign Up</button>
                 <a th:href="@{/}" class="btn-cancel">Cancel</a>
-                
-
             </form>
 
             <div th:if="${usernameExists}" th:inline="javascript">
@@ -55,12 +80,7 @@
                 </script>
             </div>            
 
-
         </div>
     </div>
-
-                    
-
-
 </body>
 </html>

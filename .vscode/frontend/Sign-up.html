@@ -1,61 +1,86 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Sign Up</title>
-  <link rel="stylesheet" href="css/signup.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sign Up</title>
+    <link rel="stylesheet" th:href="@{/css/signup.css}" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
 </head>
 <body>
-  <div class="signup-page">
-    <div class="wrapper">
-      <form action="">
-        <h1>Sign Up</h1>
+    
+    <div class="signup-page">
+        <div class="wrapper">
+            <form th:action="@{/submitSignupForm}" th:object="${signupForm}" method="post">
+                <h1>Sign Up</h1>
 
-        <div class="input-box">
-          <input type="text" placeholder="Name" name="name" required>
+                <div class="input-box">
+                    <input type="text" placeholder="First Name" th:field="*{firstName}" required /><br />
+                </div>
+
+                <div class="input-box">
+                    <input type="text" placeholder="Last Name" th:field="*{lastName}" required /><br />
+                </div>
+
+                <div class="input-box">
+                    <input type="text" placeholder="Username" th:field="*{username}" required /><br />
+                </div>
+
+                <div class="input-box">
+                    <input type="email" placeholder="Email" th:field="*{email}" required /><br />
+                </div>
+
+                <div class="input-box">
+                    <input type="password" placeholder="Password" th:field="*{password}" required /><br />
+                </div>
+
+                <div class="input-box">
+                    <input type="password" placeholder="Re-enter Password" th:field="*{confirmPassword}" required /><br />
+                </div>
+
+                <!-- Added fields from your plain HTML -->
+
+                <div class="input-box">
+                    <input type="text" placeholder="Address" th:field="*{address}" required /><br />
+                </div>
+
+                <div class="input-box">
+                    <input type="tel" placeholder="Contact Number" th:field="*{contactNo}" pattern="09\d{9}" required /><br />
+                </div>
+
+                <div class="input-box">
+                    <input type="text" placeholder="School Name" th:field="*{schoolName}" required /><br />
+                </div>
+
+                <div class="input-box">
+                    <input type="text" placeholder="Student ID" th:field="*{studentID}" required /><br />
+                </div>
+
+                <div class="input-box">
+                    <input type="number" placeholder="Age" th:field="*{age}" required /><br />
+                </div>
+
+                <div class="input-box">
+                    <input type="text" placeholder="Sex (e.g. Male/Female)" th:field="*{sex}" required /><br />
+                </div>
+
+                <button type="submit" class="btn">Sign Up</button>
+                <a th:href="@{/}" class="btn-cancel">Cancel</a>
+            </form>
+
+            <div th:if="${usernameExists}" th:inline="javascript">
+                <script>
+                    alert([[${popUpUsername}]]);
+                </script>
+            </div>
+
+            <div th:if="${emailExists}" th:inline="javascript">
+                <script>
+                    alert([[${popUpEmail}]]);
+                </script>
+            </div>            
+
         </div>
-
-        <div class="input-box">
-          <input type="text" placeholder="Username" name="username" required>
-        </div>
-
-        <div class="input-box">
-          <input type="password" placeholder="Password" name="password" required>
-        </div>
-
-        <div class="input-box">
-          <input type="email" placeholder="Email" name="email" required>
-        </div>
-
-        <div class="input-box">
-          <input type="text" placeholder="Address" name="address" required>
-        </div>
-
-        <div class="input-box">
-          <input type="tel" placeholder="Contact Number" name="contactNo" pattern="09\d{9}" required>
-        </div>
-
-        <div class="input-box">
-          <input type="text" placeholder="School Name" name="schoolName" required>
-        </div>
-
-        <div class="input-box">
-          <input type="text" placeholder="Student ID" name="studentID" required>
-        </div>
-
-        <div class="input-box">
-          <input type="number" placeholder="Age" name="age" required>
-        </div>
-
-        <div class="input-box">
-          <input type="text" placeholder="Sex (e.g. Male/Female)" name="sex" required>
-        </div>
-
-        <button type="submit" class="btn">Sign Up</button>
-      </form>
     </div>
-  </div>
 </body>
 </html>

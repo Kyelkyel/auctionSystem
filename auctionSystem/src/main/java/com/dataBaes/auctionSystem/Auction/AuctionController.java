@@ -47,6 +47,13 @@ public class AuctionController {
     public String getAuctionItemPage(@PathVariable("auctionID") Integer auctionID, Model model, HttpSession session) {
         // Fetch the auction item by id
         AuctionEntity auctionEntity = auctionRepository.getById(auctionID);
+        
+        if(auctionEntity.getCurrentPrice() == 0)
+        {
+        	auctionEntity.setCurrentPrice(Double.parseDouble((auctionEntity.getAuctionItem().getStartingBid()).toString()));	
+        }
+        
+        
         List<BidsEntity> bidsEntityList = bidsRepository.findAll(); 
         model.addAttribute("auctionVar", auctionEntity);
         model.addAttribute("session", session);
@@ -63,11 +70,13 @@ public class AuctionController {
 		AuctionEntity auctionEntity = auctionRepository.getById(auctionID);
 		
 		
+		
 		bidsEntity.setUserID(userEntity);
 		bidsEntity.setAuctionID(auctionEntity);
 		bidsEntity.setBidAmount(bidAmount);
 		bidsEntity.setBidderPlace(0);
 		bidsEntity.setBidDateTime(timeMethods.getCurrentTime().toLocalDateTime());
+		bidsEntity.getAuctionID().setCurrentPrice(Double.parseDouble(bidAmount.toString()));
 		
 		bidsRepository.save(bidsEntity);
 		
