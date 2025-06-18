@@ -127,34 +127,35 @@
 <section>
   <h2 id="category-heading-2" class="h2">PLACE BID!</h2>
   <div class="grid-container">
-    <div class="auction-card" data-category="electronics">
-      <img th:src="@{/images/canon.jpg}" alt="Product 2">
-      <div class="auction-title">Canon EOS Camera</div>
-      <div class="auction-time">Ends in 00:01:20</div>
-      <div class="auction-price">₱11,519</div>
-      <button class="bid-button">PLACE BID</button>
-      <div class="buy-now">Buy it now for ₱11,519</div>
-    </div>
+    <div th:each="auctionVar : ${auctionEntityList}"
+         if="${auctionVar.auctionStatus == 'Ended'}"
+         th:attr="data-category=${auctionVar.auctionItem.itemCategory}"
+         class="auction-card">
 
-    <div class="auction-card" data-category="hobbies">
-      <img th:src="@{/images/partybox.jpg}" alt="Product 3">
-      <div class="auction-title">Party Box 710</div>
-      <div class="auction-time">Ends in 00:23:36</div>
-      <div class="auction-price">₱799.95</div>
-      <button class="bid-button">PLACE BID</button>
-      <div class="buy-now">Buy it now for ₱799.95</div>
-    </div>
+      <img th:src="@{${auctionVar.auctionItem.itemImage}}" alt="Product Image" />
 
-    <div class="auction-card" data-category="electronics">
-      <img th:src="@{/images/tcl.jpg}" alt="Product 15">
-      <div class="auction-title">TCL 40" Class S3-Series 1080p HD LED Smart Google TV</div>
-      <div class="auction-time">Ends in 00:48:28</div>
-      <div class="auction-price">₱149.99</div>
-      <button class="bid-button">PLACE BID</button>
-      <div class="buy-now">Buy it now for ₱149.99</div>
+      <div class="auction-title" th:text="${auctionVar.auctionItem.itemTitle}">Auction Title</div>
+
+      <div class="auction-time"
+           th:text="'Ends in ' + ${#temporals.format(auctionVar.auctionItem.endTime, 'HH:mm:ss')}">
+        Ends in 00:00:00
+      </div>
+
+      <div class="auction-price" th:text="'₱' + ${auctionVar.currentPrice}">₱0.00</div>
+
+      <button class="bid-button"
+              th:onclick="|window.location.href='@{/auction/{id}(id=${auctionVar.auctionID})}'|">
+        PLACE BID
+      </button>
+
+      <div class="buy-now" th:text="'Buy it now for ₱' + ${auctionVar.auctionItem.startingBid}">
+        Buy it now for ₱0.00
+      </div>
     </div>
   </div>
 </section>
+
+
 
   <!-- Added bid modal from new version -->
   <div id="bid-modal" class="modal" style="display:none;">

@@ -166,7 +166,7 @@ public class sqlMethods {
 	
 	public String absolutePathUserUpload()
 	{
-		return "E:/Programming_Files/Java Spring Boot/auctionSystemWeb/auctionSystem/userUploads";
+		return "D:/Programming Files/Web Development/AuctionSystemWeb/auctionSystem/auctionSystem/userUploads";
 		
 	}
 

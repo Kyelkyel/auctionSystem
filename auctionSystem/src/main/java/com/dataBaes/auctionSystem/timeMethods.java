@@ -14,16 +14,11 @@ public class timeMethods {
 
     // Check if auction has started (auctionStartTime <= now)
     public static boolean hasStarted(ZonedDateTime auctionStartTime) {
-        return !auctionStartTime.isAfter(getCurrentTime());
+        return getCurrentTime().isEqual(auctionStartTime);
     }
 
     // Check if auction has ended (auctionEndTime <= now)
     public static boolean hasEnded(ZonedDateTime auctionEndTime) {
-        return !auctionEndTime.isAfter(getCurrentTime());
-    }
-
-    // Check if auction is starting exactly now (to the second)
-    public static boolean isStartingNow(ZonedDateTime auctionStartTime) {
-        return auctionStartTime.isEqual(getCurrentTime());
+        return getCurrentTime().isEqual(auctionEndTime);
     }
 }
