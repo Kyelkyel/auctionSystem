@@ -11,7 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"/>
 </head>
 <body>
-  <div th:if="${session.if_admin == false}">
+  <div th:if="${session.if_admin == false || session.if_admin == null}">
     <script th:inline="javascript">
         /*<![CDATA[*/
         window.location.href = /*[[@{/user}]]*/ '/user';
