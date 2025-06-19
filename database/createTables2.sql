@@ -126,6 +126,20 @@ INSERT INTO Users (
   'Matthew', '1234', 'matthew@gmail.com', 'OFFLINE', false, '123 Main St', '0913256713', 'Matthew Dwayne', 'NU Manila', '2022-1313', 20, 'Male', "userImages/523e6500-e13b-45r3-b346-563412340123.jpg"
 );
 
+INSERT INTO Users (
+  username, password, email, userStatus, if_admin, address, contactNo, name, schoolName, studentID, age, sex, profile_location
+) VALUES (
+  'Myckle', '1234', 'myckle@gmail.com', 'OFFLINE', false, '123 Main St Manila', '0912346743', 'Myckle Vince', 'NU Manila', '2022-1433', 20, 'Male', "userImages/523e6500-e13b-45r3-b346-563412340123.jpg"
+);
+
+
+INSERT INTO Users (
+  username, password, email, userStatus, if_admin, address, contactNo, name, schoolName, studentID, age, sex, profile_location
+) VALUES (
+  'Myckle', '1234', 'myckle@gmail.com', 'OFFLINE', false, '123 Main St Manila', '0912346743', 'Myckle Vince', 'NU Manila', '2022-1433', 20, 'Male', "userImages/523e6500-e13b-45r3-b346-563412340123.jpg"
+);
+
+
 INSERT INTO Bids (userID, auctionID, bidAmount, bidderPlace, bidDateTime)
 VALUES (1, 1, 1, 1, '2025-06-17 14:30:00');
 
