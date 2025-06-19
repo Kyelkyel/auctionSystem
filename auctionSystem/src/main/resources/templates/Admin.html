@@ -24,28 +24,29 @@
 <header>
     <div class="logo">KoolBulls Admin</div>
     
-    <button id="menuBtn">☰</button>
+        <button id="menuBtn">☰</button>
       
     <div id="sidebar" class="sidebar">
-      <button id="closeBtn">×</button>
+    <button id="closeBtn">×</button>
 
       <div class="profile">
-         <!-- Use Thymeleaf to resolve image src -->
-         <img th:src="@{/images/pfptest.jpg}" alt="Profile picture" class="avatar"/>
-         <div class="userinfo">
-           <strong>Admin</strong>
-           <span class="handle">Admin</span>
-         </div>
+         <!-- Preserved Thymeleaf image source -->
+         <img th:src="@{${session.profile_location}}" alt="Profile picture" class="avatar">
+        <div class="userinfo">
+         <strong th:text="${session.username}">USER 01</strong>
+         <span class="handle" th:text="'@' + ${session.username}">@user01</span>
+       </div>
       </div>
-      <ul>
-        <!-- Use th:href for internal links, adjust paths as needed -->
-        <li><a th:href="@{/yourProfile}">Your profile</a></li>
-        <li><a th:href="@{/auctionCreation}">Sell Items</a></li>
-        <li><a th:href="@{/auctions}">Auctions</a></li>
-        <li><a th:href="@{/settings}">Settings</a></li>
-        <li><a th:href="@{/signout}">Sign out</a></li>
-      </ul>
-    </div>
+    
+    <ul>
+      <li><a href="yourProfile.html">Your profile</a></li>
+      <li><a th:href="@{/auctionCreation}">Sell Items</a></li>
+      <li><a href="Auctioneer.html">Auctions</a></li>
+      <li><a href="#">Settings</a></li>
+      <li><a th:href="@{/sign-out}">Sign out</a></li>
+    </ul>
+  </div>
+
 </header>
 
 <!-- Main content -->
@@ -71,155 +72,285 @@
       </div>
     </section>
 
-  <!-- Manage Auctions -->
-  <section class="manage-auctions" id="auction">
-    <h2>Manage Bids</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Title</th>
-          <th>Price</th>
-          <th>Status</th>
-          <th>Date Submitted</th>
-          <th>Time</th>
-          <th>Auctioneer</th>
-          <th>Email</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody id="auction-list">
-        <tr th:each="auctionCreationEntityVar : ${auctionList}">
-          <td th:text="${auctionCreationEntityVar.auctionItem.itemTitle}">Apple MacBook Air</td>
-          <td th:text="${#numbers.formatDecimal(auctionCreationEntityVar.currentPrice, 0, 0)}">₱6,269</td>
 
-          <td th:text="${auctionCreationEntityVar.auctionStatus}">Upcoming</td>
-          <td th:text="${#temporals.format(auctionCreationEntityVar.auctionItem.startTime, 'MMMM d, yyyy')}">June 9, 2025</td>
-          <td th:text="${#temporals.format(auctionCreationEntityVar.auctionItem.startTime, 'h:mm a')}">12:00 PM</td>
-          <td th:text="${auctionCreationEntityVar.auctionItem.sellerInfoName}">AuctioneerUsername</td>
-          <td th:text="${auctionCreationEntityVar.auctionItem.sellerInfoEmail}">auctioneer@example.com</td>
-          <td>
-            <form th:action="@{'/deleteAuctionItem/' + ${auctionCreationEntityVar.auctionItem.auctionItemID}}" method="post" style="display:inline">
-              <button type="submit">Delete</button>
-            </form>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </section>
+<!-- Manage bids -->
+<section class="manage-auctions" id="auction">
+  <h2>Manage Bids</h2>
+  
+  <!-- Search Controls -->
+  <div>
+    <select id="searchTypeBids">
+      <option value="0">Auction Title</option>
+      <option value="1">Bid Amount</option>
+      <option value="2">Date Submitted</option>
+      <option value="3">Time</option>
+      <option value="4">Bidder</option>
+      <option value="5">BidderID</option>
+      <option value="6">Email</option>
+      <option value="7">Actions</option>
+    </select>
+    <input type="text" id="searchInputBids" placeholder="Search...">
+  </div>
 
-  <!-- Manage Auctions -->
-  <section class="manage-auctions" id="auction">
-    <h2>Manage Auctions</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Title</th>
-          <th>Price</th>
-          <th>Status</th>
-          <th>Date Submitted</th>
-          <th>Time</th>
-          <th>Auctioneer</th>
-          <th>Email</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody id="auction-list">
-        <tr th:each="auctionCreationEntityVar : ${auctionList}">
-          <td th:text="${auctionCreationEntityVar.auctionItem.itemTitle}">Apple MacBook Air</td>
-          <td th:text="${#numbers.formatDecimal(auctionCreationEntityVar.currentPrice, 0, 0)}">₱6,269</td>
-
-          <td th:text="${auctionCreationEntityVar.auctionStatus}">Upcoming</td>
-          <td th:text="${#temporals.format(auctionCreationEntityVar.auctionItem.startTime, 'MMMM d, yyyy')}">June 9, 2025</td>
-          <td th:text="${#temporals.format(auctionCreationEntityVar.auctionItem.startTime, 'h:mm a')}">12:00 PM</td>
-          <td th:text="${auctionCreationEntityVar.auctionItem.sellerInfoName}">AuctioneerUsername</td>
-          <td th:text="${auctionCreationEntityVar.auctionItem.sellerInfoEmail}">auctioneer@example.com</td>
-          <td>
-            <form th:action="@{'/deleteAuctionItem/' + ${auctionCreationEntityVar.auctionItem.auctionItemID}}" method="post" style="display:inline">
-              <button type="submit">Delete</button>
-            </form>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </section>
-
-    <!-- Pending Items from Users -->
-    <section class="manage-bidders" id="bidders">
-  <h2>Manage Bidders</h2>
-
-  <!-- Search form -->
-  <form th:action="@{/manageBidders}" method="get" style="margin-bottom: 1em;">
-    <input type="text" name="search" placeholder="Search by username or auction title" th:value="${search}" />
-    <button type="submit">Search</button>
-  </form>
-
-  <table>
+  <table id="bidsTable">
     <thead>
       <tr>
-        <th>Bidder Username</th>
         <th>Auction Title</th>
         <th>Bid Amount</th>
-        <th>Bid Date</th>
-        <th>Bidder Place</th>
+        <th>Date Submitted</th>
+        <th>Time</th>
+        <th>Bidder</th>
+        <th>BidderID</th>
+        <th>Email</th>
         <th>Actions</th>
       </tr>
     </thead>
-    <tbody id="bidder-list">
-      <tr th:each="bid : ${bidList}">
-        <td th:text="${bid.userID.username}">bidderUsername</td>
-        <td th:text="${bid.auctionID.auctionItem.itemTitle}">Auction Item Title</td>
-        <td th:text="${#numbers.formatDecimal(bid.bidAmount, 0, 0)}">₱1000</td>
-        <td th:text="${#temporals.format(bid.bidDateTime, 'MMMM d, yyyy h:mm a')}">June 10, 2025 2:00 PM</td>
-        <td th:text="${bid.bidderPlace}">1</td>
+    <tbody id="bid-list">
+      <tr th:each="bidEntityVar : ${bidsList}">
+        <td th:text="${bidEntityVar.auctionID.auctionItem.itemTitle}">Apple MacBook Air</td>
+        <td th:text="${#numbers.formatDecimal(bidEntityVar.bidAmount, 0, 0)}">₱6,269</td>
+        <td th:text="${#temporals.format(bidEntityVar.bidDateTime, 'MMMM d, yyyy')}">June 9, 2025</td>
+        <td th:text="${#temporals.format(bidEntityVar.bidDateTime, 'h:mm a')}">12:00 PM</td>
+        <td th:text="${bidEntityVar.userID.username}">bidderUsername</td>
+        <td th:text="${bidEntityVar.userID.userID}">bidderID</td>
+        <td th:text="${bidEntityVar.userID.email}">bidder@example.com</td>
         <td>
-          <form th:action="@{'/deleteBid/' + ${bid.bidID}}" method="post" style="display:inline">
+          <form th:action="@{'/deleteBidItem/' + ${bidEntityVar.bidID}}" method="post" style="display:inline">
             <button type="submit">Delete</button>
           </form>
         </td>
-      </tr>
-      <tr th:if="${#lists.isEmpty(bidList)}">
-        <td colspan="6">No bidders found.</td>
       </tr>
     </tbody>
   </table>
 </section>
 
+<script>
+document.getElementById('searchInputBids').addEventListener('keyup', function() {
+  var input = this.value.toLowerCase();
+  var searchType = document.getElementById('searchTypeBids').value; // column index as string
+  var table = document.getElementById('bidsTable');
+  var trs = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+
+  for (var i = 0; i < trs.length; i++) {
+    var td = trs[i].getElementsByTagName('td')[searchType];
+    if (td) {
+      var txtValue = td.textContent || td.innerText;
+      trs[i].style.display = txtValue.toLowerCase().indexOf(input) > -1 ? "" : "none";
+    }
+  }
+});
+</script>
 
 
-    <!-- Winners -->
-    <section class="manage-auctions" id="winners">
-      <h2>Winning Bidders</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Item</th>
-            <th>Winner</th>
-            <th>Winning Bid</th>
-            <th>Date Submitted</th>
-            <th>Time</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>PlayStation 5</td>
-            <td>user789</td>
-            <td>₱21,000</td>
-            <td>June 9, 2025</td>
-            <td>12:00 PM</td>
-            <td>Paid</td>
-          </tr>
-          <tr>
-            <td>HP Envy Laptop</td>
-            <td>user102</td>
-            <td>₱29,500</td>
-            <td>June 9, 2025</td>
-            <td>12:00 PM</td>
-            <td>Pending Payment</td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
+
+<!-- Manage Auctions -->
+<section class="manage-auctions" id="auction">
+  <h2>Manage Auctions</h2>
+  <!-- Search Controls -->
+  <div>
+    <select id="searchType">
+      <option value="1">Title</option>
+      <option value="2">Price</option>
+      <option value="3">Status</option>
+      <option value="4">Date Submitted</option>
+      <option value="5">Time</option>
+      <option value="6">Auctioneer</option>
+      <option value="7">Auctioneer ID</option>
+      <option value="8">Email</option>
+      <option value="9">Actions</option>
+    </select>
+    <input type="text" id="searchInput" placeholder="Search...">
+  </div>
+
+  <table id="auctionTable">
+    <thead>
+      <tr>
+        <th>Image</th>
+        <th>Title</th>
+        <th>Price</th>
+        <th>Status</th>
+        <th>Date Submitted</th>
+        <th>Time</th>
+        <th>Auctioneer</th>
+        <th>Auctioneer ID</th>
+        <th>Email</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody id="auction-list">
+      <tr th:each="auctionEntityVar : ${auctionList}">
+        <td>
+          <img th:src="${auctionEntityVar.auctionItem.itemImage}" class="item-image" alt="Item Image" />
+        </td>
+        <td th:text="${auctionEntityVar.auctionItem.itemTitle}">Apple MacBook Air</td>
+        <td th:text="${#numbers.formatDecimal(auctionEntityVar.currentPrice, 0, 0)}">₱6,269</td>
+        <td th:text="${auctionEntityVar.auctionStatus}">Upcoming</td>
+        <td th:text="${#temporals.format(auctionEntityVar.auctionItem.startTime, 'MMMM d, yyyy')}">June 9, 2025</td>
+        <td th:text="${#temporals.format(auctionEntityVar.auctionItem.startTime, 'h:mm a')}">12:00 PM</td>
+        <td th:text="${auctionEntityVar.auctionItem.sellerInfoName}">AuctioneerUsername</td>
+        <td th:text="${auctionEntityVar.auctionItem.userID}">AuctioneerID</td>
+        <td th:text="${auctionEntityVar.auctionItem.sellerInfoEmail}">auctioneer@example.com</td>
+        <td>
+          <form th:action="@{'/deleteAuctionItem/' + ${auctionEntityVar.auctionID} + '/' + ${auctionEntityVar.auctionItem.auctionItemID}}" method="post" style="display:inline">
+            <button type="submit">Delete</button>
+          </form>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<script>
+document.getElementById('searchInput').addEventListener('keyup', function() {
+  var input = this.value.toLowerCase();
+  var searchType = document.getElementById('searchType').value; // column index as string
+  var table = document.getElementById('auctionTable');
+  var trs = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+
+  for (var i = 0; i < trs.length; i++) {
+    var td = trs[i].getElementsByTagName('td')[searchType];
+    if (td) {
+      var txtValue = "";
+
+      // For the Image column (index 0), search by alt text or image src
+      if (searchType == "0") {
+        var img = td.querySelector('img');
+        if (img) {
+          // You can search by alt text or src attribute
+          txtValue = (img.alt || "") + " " + (img.src || "");
+        }
+      } else {
+        txtValue = td.textContent || td.innerText;
+      }
+
+      trs[i].style.display = txtValue.toLowerCase().indexOf(input) > -1 ? "" : "none";
+    }
+  }
+});
+</script>
+
+
+
+
+
+
+<!-- Pending Items from Users -->
+<section class="pending-auctions" id="pending-items">
+  <h2>Pending Items for Approval</h2>
+    <!-- Search Controls -->
+  <div>
+    <select id="searchTypePending">
+      <option value="1">Title</option>
+      <option value="2">Description</option>
+      <option value="3">Seller</option>
+      <option value="4">Seller ID</option>
+      <option value="5">Date Submitted</option>
+      <option value="6">Time</option>
+    </select>
+    <input type="text" id="searchInputPending" placeholder="Search...">
+  </div>
+
+  <table id="pendingTable">
+    <thead>
+      <tr>
+        <th>Image</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Seller</th>
+        <th>Seller ID</th>
+        <th>Date Submitted</th>
+        <th>Time</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody id="pending-list">
+      <tr th:each="auctionCreationEntityVar : ${auctionCreationEntityList}" th:if="${auctionCreationEntityVar.isVerified == false}">
+        <td>
+          <img th:src="${auctionCreationEntityVar.itemImage}" class="item-image" alt="Item Image" />
+        </td>
+        <td th:text="${auctionCreationEntityVar.itemTitle}">Title</td>
+        <td th:text="${auctionCreationEntityVar.itemDescription}">Description</td>
+        <td th:text="${auctionCreationEntityVar.sellerInfoEmail}">Seller</td>
+        <td th:text="${auctionCreationEntityVar.userID}">Seller ID</td>
+        <td th:text="${#temporals.format(auctionCreationEntityVar.startTime, 'MMMM d, yyyy')}">Date Submitted</td>
+        <td th:text="${#temporals.format(auctionCreationEntityVar.startTime, 'h:mm a')}">Time</td>
+        <td>
+          <form th:action="@{'/approveAuctionItem/' + ${auctionCreationEntityVar.auctionItemID}}" method="post" style="display:inline">
+            <button type="submit">Approve</button>
+          </form>
+          <form th:action="@{'/rejectAuctionItem/' + ${auctionCreationEntityVar.auctionItemID}}" method="post" style="display:inline">
+            <button type="submit">Reject</button>
+          </form>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<script>
+document.getElementById('searchInputPending').addEventListener('keyup', function() {
+  var input = this.value.toLowerCase();
+  var searchType = document.getElementById('searchTypePending').value; // column index as string
+  var table = document.getElementById('pendingTable');
+  var trs = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+
+  for (var i = 0; i < trs.length; i++) {
+    var td = trs[i].getElementsByTagName('td')[searchType];
+    if (td) {
+      var txtValue = td.textContent || td.innerText;
+      trs[i].style.display = txtValue.toLowerCase().indexOf(input) > -1 ? "" : "none";
+    }
+  }
+});
+</script>
+
+
+<!-- Winners -->
+<section class="manage-auctions" id="winners">
+  <h2>Winning Bidders</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Image</th>
+        <th>Item</th>
+        <th>Winner</th>
+        <th>Winning Bid</th>
+        <th>Date Submitted</th>
+        <th>Time</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="auctionEntityVar : ${auctionList}"
+          th:with="recentBidId=${bidsRepository.findMostRecentBidIdByAuctionId(auctionEntityVar.auctionID).orElse(null)}">
+        <td>
+          <img th:src="${auctionEntityVar.auctionItem.itemImage}" class="item-image" alt="Item Image" />
+        </td>
+        <td th:text="${auctionEntityVar.auctionItem.itemTitle}">Item Title</td>
+        
+        <td th:if="${recentBidId != null}" 
+            th:with="latestBid=${bidsRepository.getById(recentBidId)}"
+            th:text="${latestBid.userID.username}">Winner Username</td>
+        <td th:unless="${recentBidId != null}">-</td>
+        
+        <td th:if="${recentBidId != null}" 
+            th:with="latestBid=${bidsRepository.getById(recentBidId)}"
+            th:text="'₱' + ${latestBid.bidAmount}">₱Amount</td>
+        <td th:unless="${recentBidId != null}">-</td>
+        
+        <td th:if="${recentBidId != null}" 
+            th:with="latestBid=${bidsRepository.getById(recentBidId)}"
+            th:text="${#temporals.format(latestBid.bidDateTime, 'MMMM d, yyyy')}">Date</td>
+        <td th:unless="${recentBidId != null}">-</td>
+        
+        <td th:if="${recentBidId != null}" 
+            th:with="latestBid=${bidsRepository.getById(recentBidId)}"
+            th:text="${#temporals.format(latestBid.bidDateTime, 'hh:mm a')}">Time</td>
+        <td th:unless="${recentBidId != null}">-</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
 
   </div>
 </main>

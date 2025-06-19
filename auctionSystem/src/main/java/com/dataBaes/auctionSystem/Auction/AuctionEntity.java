@@ -33,6 +33,10 @@ public class AuctionEntity {
         return auctionID;
     }
 
+    public String getAuctionStatusAsString() {
+        return auctionStatus != null ? auctionStatus.name() : "";
+    }
+    
     public void setAuctionID(Integer auctionID) {
         this.auctionID = auctionID;
     }

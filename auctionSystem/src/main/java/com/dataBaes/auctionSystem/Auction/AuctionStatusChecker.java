@@ -16,14 +16,14 @@ public class AuctionStatusChecker {
         this.auctionRepository = auctionRepository;
     }
 
-    @Scheduled(fixedRate = 10000) // run every 60 seconds
+    @Scheduled(fixedRate = 2000) // run every 2 seconds
     @Transactional
     public void updateAuctionStatusIfStarted() {
         ZoneId philippineZone = ZoneId.of("Asia/Manila");
         ZonedDateTime now = ZonedDateTime.now(philippineZone);
 
-        // Fetch auctions that are not started yet and whose start time is <= now
-        List<AuctionEntity> auctionsToStart = auctionRepository.findAuctionsToStart(now.toLocalDateTime());
+        // Only update inactive auctions that should start
+        List<AuctionEntity> auctionsToStart = auctionRepository.findInactiveAuctionsToStart(now.toLocalDateTime());
 
         for (AuctionEntity auction : auctionsToStart) {
             auction.setAuctionStatus(AuctionEntity.AuctionStatus.Ongoing);
@@ -31,18 +31,19 @@ public class AuctionStatusChecker {
         }
     }
     
-    @Scheduled(fixedRate = 10000) // every 60 seconds
+    @Scheduled(fixedRate = 60000) // every 60 seconds
     @Transactional
     public void updateAuctionStatusIfEnded() {
         ZoneId philippineZone = ZoneId.of("Asia/Manila");
         ZonedDateTime now = ZonedDateTime.now(philippineZone);
 
-        List<AuctionEntity> auctionsToEnd = auctionRepository.findAuctionsToEnd(now.toLocalDateTime());
+        // Only update ongoing auctions that should end
+        List<AuctionEntity> auctionsToEnd = auctionRepository.findOngoingAuctionsToEnd(now.toLocalDateTime());
 
         for (AuctionEntity auction : auctionsToEnd) {
             auction.setAuctionStatus(AuctionEntity.AuctionStatus.Ended);
+            auction.setSoldAt(auction.getCurrentPrice().intValue());
             auctionRepository.save(auction);
         }
     }
-
 }

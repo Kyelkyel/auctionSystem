@@ -59,13 +59,13 @@
           <div class="auction-price" id="price" th:text="${auctionVar.currentPrice}">Current Price</div>
 
           <!-- Form for placing bid -->
-          <form id="bidForm" th:action="@{/createBidID/{userID}/{auctionID}(userID=${session.userID}, auctionID=${auctionVar.auctionItem.auctionItemID})}" method="post">
+          <form id="bidForm" th:action="@{/createBidID/{userID}/{auctionID}(userID=${session.userID}, auctionID=${auctionVar.auctionID})}" method="post">
             <input type="hidden" name="auctionID" th:value="${auctionVar.auctionItem.auctionItemID}" />
             <input type="number" name="bidAmount" step="0.01" placeholder="Enter your bid" required />
             <button type="submit" class="bid-button">PLACE BID</button>
           </form>
 
-          <div class="buy-now">Buy it now for <span id="buy-price" th:text="${auctionVar.auctionItem.startingBid}">Starting Bid</span></div>
+          <div class="buy-now">Buy it now for <span id="buy-price" th:text="${auctionVar.currentPrice}">Current PRice</span></div>
           <div>
             <strong>Status:</strong> <span id="auctionStatus" th:text="${auctionVar.auctionStatus}">Auction Status</span>
           </div>
@@ -84,7 +84,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr th:each="bidsVar : ${bidsEntityList}">
+            <tr th:each="bidsVar : ${bidsEntityList}" th:if="${bidsVar.auctionID.auctionID == auctionVar.auctionID}">
               <td th:text="${bidsVar.userID.username}">Bidder</td>
               <td th:text="${bidsVar.bidAmount}">Bid Amount</td>
               <td th:text="${#temporals.format(bidsVar.bidDateTime, 'hh:mm a')}">Bid Time</td>
@@ -115,31 +115,43 @@
       </section>
 
   <script>
+  document.getElementById('bidForm').addEventListener('submit', function(event) {
+    // 1. Get auction status text
+    const auctionStatus = document.getElementById('auctionStatus').textContent.trim();
+    
+    // 2. Prevent bidding if not Ongoing
+    if (auctionStatus !== 'Ongoing') {
+      event.preventDefault();
+      alert('You cannot place a bid because the auction is ' + auctionStatus + '.');
+      return;
+    }
+
+    // 3. Get current price and user's bid
+    const currentPriceText = document.getElementById('price').textContent.trim();
+    const currentPrice = parseFloat(currentPriceText.replace(/[^0-9.-]+/g, ""));
+    const userBidInput = parseFloat(this.bidAmount.value);
+
+    // 4. Validate bid amount
+    if (userBidInput <= currentPrice) {
+      event.preventDefault();
+      alert('Your bid must be greater than the current price.');
+    }
+  });
+</script>
+
+  <script>
     document.getElementById('bidForm').addEventListener('submit', function(event) {
-      // 1. Check auction status
-      const auctionStatus = document.getElementById('auctionStatus').textContent.trim().toLowerCase();
-      // if (auctionStatus !== 'Ongoing') {
-      //   event.preventDefault(); // Stop form submission
-      //   alert('You cannot place a bid because the auction is inactive.');
-      //   return; // Exit the function
-      // }
+      // 1. Get current price and user's bid
+      const currentPrice = parseFloat(document.getElementById('price').textContent);
+      const bidAmount = parseFloat(this.bidAmount.value);
 
-      // 2. Get current price and user's bid
-      const currentPriceText = document.getElementById('price').textContent.trim();
-      // Assuming currentPriceText might contain currency symbols, we'll try to parse it safely.
-      // A more robust solution might involve sending the price value directly in a data attribute.
-      const currentPrice = parseFloat(currentPriceText.replace(/[^0-9.-]+/g,"")); // Remove non-numeric characters for parsing
-
-      const userBidInput = parseFloat(this.bidAmount.value);
-
-      // 3. Validate bid amount
-      if (userBidInput <= currentPrice) {
+      // 2. Validate bid amount
+      if (bidAmount <= currentPrice) {
         event.preventDefault(); // Stop form submission
-        alert('Your bid must be greater than the current price.');
+        alert('Your bid must be greater than the current price!');
       }
     });
-  </script>
-
+</script>
   <script th:src="@{/javascript/Bid-Button.js}"></script>
   <script th:src="@{/javascript/Profile.js}" defer></script>
   </body>
