@@ -321,7 +321,7 @@ document.getElementById('searchInputPending').addEventListener('keyup', function
     </thead>
     <tbody>
       <tr th:each="auctionEntityVar : ${auctionList}"
-          th:with="recentBidId=${bidsRepository.findMostRecentBidIdByAuctionId(auctionEntityVar.auctionID).orElse(null)}">
+          th:with="recentBidId=${bidsRepository.findMostRecentBidIdByAuctionId(auctionEntityVar.auctionID).orElse(null)}" th:if="${auctionEntityVar.soldAt != 0 && auctionEntityVar.soldAt != null}">
         <td>
           <img th:src="${auctionEntityVar.auctionItem.itemImage}" class="item-image" alt="Item Image" />
         </td>
